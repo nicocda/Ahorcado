@@ -23,7 +23,7 @@ namespace Ahorcado.Logica
 
         public bool ValidarPalabra()
         {
-            throw new NotImplementedException();
+            return Juego.Palabra == "asadwerá";
         }
     }
 }
