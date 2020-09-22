@@ -9,6 +9,7 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            //Test
         }
     }
 }
