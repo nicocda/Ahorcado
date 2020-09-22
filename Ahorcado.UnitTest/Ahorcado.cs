@@ -34,5 +34,13 @@ namespace Ahorcado.UnitTest
             Assert.IsTrue(todasLetras);
         }
 
+        [TestMethod]
+        public void Palabra_SinEspacios()
+        {
+            Juego juego = new Juego();
+
+            bool conieneEspacios = juego.Palabra.Any(c=> c.Equals(" "));
+            Assert.IsFalse(conieneEspacios);
+        }
     }
 }
