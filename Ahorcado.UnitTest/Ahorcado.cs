@@ -82,9 +82,10 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void Probar_Palabra_Ingresada()
         {
-            Juego juego = new Juego();
-            juego.PalabraIngresada = "asadwerá";
-            Assert.AreEqual(juego.Palabra, juego.PalabraIngresada);
+            Logica logica = new Logica();
+            logica.IngresarPalabra("asadwerá");
+            bool palabraEsIgual = logica.ValidarPalabra();
+            Assert.IsTrue(palabraEsIgual);
         }
 
     }
