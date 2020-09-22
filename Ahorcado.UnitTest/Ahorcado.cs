@@ -94,7 +94,6 @@ namespace Ahorcado.UnitTest
 
 
         [TestMethod]
-        [Ignore]
         public void Probar_Palabra_Ingresada_Sea_Igual()
         {
             var logica = new LogicaJuego();
