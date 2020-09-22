@@ -24,5 +24,15 @@ namespace Ahorcado.UnitTest
 
             Assert.AreEqual(juego.Palabra.Length, 8);
         }
+
+        [TestMethod]
+        public void Palabra_SinSimbolosRaros()
+        {
+            Juego juego = new Juego();
+
+            bool todasLetras = juego.Palabra.All(char.IsLetter);
+            Assert.IsTrue(todasLetras);
+        }
+
     }
 }
