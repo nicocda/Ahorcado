@@ -52,5 +52,13 @@ namespace Ahorcado.UnitTest
 
             Assert.IsNotNull(juego.Usuario);
         }
+
+        [TestMethod]
+        public void Usuario_NoVacio()
+        {
+            Juego juego = new Juego();
+
+            Assert.IsFalse(string.IsNullOrEmpty(juego.Usuario));
+        }
     }
 }
