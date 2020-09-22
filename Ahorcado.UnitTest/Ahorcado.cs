@@ -81,7 +81,6 @@ namespace Ahorcado.UnitTest
 
 
         [TestMethod]
-        [Ignore]
         public void Probar_Palabra_Ingresada()
         {
             LogicaJuego logica = new LogicaJuego();

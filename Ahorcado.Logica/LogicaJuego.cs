@@ -18,12 +18,18 @@ namespace Ahorcado.Logica
 
         public void IngresarPalabra(string v)
         {
-            throw new NotImplementedException();
+            this.Juego.PalabraIngresada = v;
         }
 
         public bool ValidarPalabra()
         {
-            throw new NotImplementedException();
+           if(this.Juego.PalabraIngresada == this.Juego.Palabra)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }
