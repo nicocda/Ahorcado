@@ -42,5 +42,15 @@ namespace Ahorcado.UnitTest
             bool conieneEspacios = juego.Palabra.Any(c=> c.Equals(" "));
             Assert.IsFalse(conieneEspacios);
         }
+
+
+
+        [TestMethod]
+        public void Usuario_NoNull()
+        {
+            Juego juego = new Juego();
+
+            Assert.IsNotNull(juego.Usuario);
+        }
     }
 }
