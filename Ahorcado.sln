@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.UnitTest", "Ahorcado.UnitTest\Ahorcado.UnitTest.csproj", "{EA038C82-320C-44AF-9452-719246A6C8A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.Dominio", "Ahorcado.Dominio\Ahorcado.Dominio.csproj", "{218CED53-44BE-476D-9759-A1E357781283}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.Logica", "Ahorcado.Logica\Ahorcado.Logica.csproj", "{05545BF9-682E-4BEE-8384-A33D78569423}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{EA038C82-320C-44AF-9452-719246A6C8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA038C82-320C-44AF-9452-719246A6C8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA038C82-320C-44AF-9452-719246A6C8A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{218CED53-44BE-476D-9759-A1E357781283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218CED53-44BE-476D-9759-A1E357781283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218CED53-44BE-476D-9759-A1E357781283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218CED53-44BE-476D-9759-A1E357781283}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05545BF9-682E-4BEE-8384-A33D78569423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05545BF9-682E-4BEE-8384-A33D78569423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05545BF9-682E-4BEE-8384-A33D78569423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05545BF9-682E-4BEE-8384-A33D78569423}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
