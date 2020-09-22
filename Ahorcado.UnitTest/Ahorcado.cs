@@ -59,5 +59,33 @@ namespace Ahorcado.UnitTest
             Juego juego = new Juego();
             Assert.IsFalse(string.IsNullOrEmpty(juego.Usuario));
         }
+
+        [TestMethod]
+        public void Probar_Palabra_IngresadaIsLetter()
+        {
+            Juego juego = new Juego();
+            juego.PalabraIngresada = "PalabraPorTeclado";
+            bool todasLetras = juego.PalabraIngresada.All(char.IsLetter);
+            Assert.IsTrue(todasLetras);
+        }
+
+        [TestMethod]
+        public void PalbraIngresada_hasNotSpace()
+        {
+            Juego juego = new Juego();
+            juego.PalabraIngresada = "PalabraPorTeclado";
+            bool todasLetras = juego.PalabraIngresada.Contains(" ");
+            Assert.IsFalse(todasLetras);
+        }
+
+
+        [TestMethod]
+        public void Probar_Palabra_Ingresada()
+        {
+            Juego juego = new Juego();
+            juego.PalabraIngresada = "asadwerá";
+            Assert.AreEqual(juego.Palabra, juego.PalabraIngresada);
+        }
+
     }
 }

@@ -10,5 +10,6 @@ namespace Ahorcado.Dominio
     {
         public string Palabra = "asadwerá";
         public string Usuario = "John Cena";
+        public string PalabraIngresada;
     }
 }
