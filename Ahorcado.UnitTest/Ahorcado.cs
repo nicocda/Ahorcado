@@ -13,7 +13,7 @@ namespace Ahorcado.UnitTest
         {
             Juego juego = new Juego();
 
-            bool contieneUnNumero = juego.Palabra.Any(char.IsDigit);
+            bool contieneUnNumero = !juego.Palabra.Any(char.IsDigit);
             Assert.IsTrue(contieneUnNumero);
         }
 

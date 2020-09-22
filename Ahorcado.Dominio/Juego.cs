@@ -8,7 +8,7 @@ namespace Ahorcado.Dominio
 {
     public class Juego
     {
-        public string Palabra = "";
+        public string Palabra = "asdqwert";
         public string Usuario = "John Doe";
     }
 }
