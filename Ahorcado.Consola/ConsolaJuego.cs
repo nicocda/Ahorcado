@@ -17,7 +17,7 @@ namespace Ahorcado.Consola
             return (frase);
         }
 
-        public String ComunicarVictoria()
+        public static String ComunicarVictoria()
         {
             LogicaJuego logica = new LogicaJuego();
             var frase = "Victoria";
