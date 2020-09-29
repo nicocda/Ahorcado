@@ -12,6 +12,6 @@ namespace Ahorcado.Dominio
         public string Usuario = "John Cena";
         public string PalabraIngresada;
 
-        public List<string> Letras = new List<string>();
+        public List<string> LetrasIngresadas = new List<string>();
     }
 }

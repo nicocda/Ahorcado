@@ -44,10 +44,18 @@ namespace Ahorcado.Logica
             if (letra.Length != 1)
                 throw new ArgumentOutOfRangeException("La letra debe contener solo un caracter");
 
-            if (this.Juego.Letras.Contains(letra))
+            if (this.Juego.LetrasIngresadas.Contains(letra))
                 throw new ArgumentException("La letra ingresada ya existe");
 
-            this.Juego.Letras.Add(letra);
+            if (!PertenecePalabra(letra))
+                throw new ArgumentException("La letra ingresada ya existe");
+
+            this.Juego.LetrasIngresadas.Add(letra);
+        }
+
+        public bool PertenecePalabra(string letra)
+        {
+            return this.Juego.Palabra.Contains(letra);
         }
     }
 }
