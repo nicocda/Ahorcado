@@ -29,7 +29,7 @@ namespace Ahorcado.Logica
         public void IngresarLetra(string letra)
         {
             if (letra == null)
-                throw new ArgumentException();
+                throw new ArgumentNullException();
             if (letra.Length != 1)
                 throw new ArgumentOutOfRangeException();
 

@@ -140,7 +140,7 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra(null);
-            Assert.IsTrue(logica.Juego.Letras.Contains(null));
+            Assert.IsFalse(logica.Juego.Letras.Contains(null));
         }
 
     }
