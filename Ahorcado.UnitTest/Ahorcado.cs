@@ -143,5 +143,13 @@ namespace Ahorcado.UnitTest
             Assert.IsFalse(logica.Juego.Letras.Contains(null));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Ingresar_Letra_Empty()
+        {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("");
+            Assert.IsFalse(logica.Juego.Letras.Contains(""));
+        }
     }
 }
