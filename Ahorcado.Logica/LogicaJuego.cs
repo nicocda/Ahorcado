@@ -21,6 +21,12 @@ namespace Ahorcado.Logica
             this.Juego.PalabraIngresada = v;
         }
 
+        public int RetornarTamañodePalabra()
+        {
+            return this.Juego.Palabra.Length;
+        }
+
+
         public bool ValidarPalabra()
         {
             return (this.Juego.PalabraIngresada == this.Juego.Palabra);
