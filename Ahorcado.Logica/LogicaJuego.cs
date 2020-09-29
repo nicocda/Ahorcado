@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Ahorcado.Logica
 {
@@ -44,10 +45,20 @@ namespace Ahorcado.Logica
             if (letra.Length != 1)
                 throw new ArgumentOutOfRangeException("La letra debe contener solo un caracter");
 
-            if (this.Juego.Letras.Contains(letra))
+            if (this.Juego.LetrasIngresadas.Contains(letra))
                 throw new ArgumentException("La letra ingresada ya existe");
-
-            this.Juego.Letras.Add(letra);
+            this.Juego.LetrasIngresadas.Add(letra);
         }
+
+        public bool PertenecePalabra(string letra)
+        {
+            return this.Juego.Palabra.Contains(letra);
+        }
+
+        public int cantLetEnPal(char letra)
+        {
+            return Regex.Matches(this.Juego.Palabra, letra.ToString()).Count; 
+        }
+
     }
 }
