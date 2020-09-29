@@ -26,6 +26,11 @@ namespace Ahorcado.Logica
             return this.Juego.Palabra.Length;
         }
 
+        public void IngresarPalbraEnJuego(string pal)
+        {
+            this.Juego.Palabra = pal;
+        }
+
 
         public bool ValidarPalabra()
         {
