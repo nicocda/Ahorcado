@@ -46,10 +46,6 @@ namespace Ahorcado.Logica
 
             if (this.Juego.LetrasIngresadas.Contains(letra))
                 throw new ArgumentException("La letra ingresada ya existe");
-
-            if (!PertenecePalabra(letra))
-                throw new ArgumentException("La letra ingresada ya existe");
-
             this.Juego.LetrasIngresadas.Add(letra);
         }
 
