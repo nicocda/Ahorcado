@@ -2,6 +2,7 @@
 using System.Linq;
 using Ahorcado.Dominio;
 using Ahorcado.Logica;
+using Ahorcado.Consola;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Ahorcado.UnitTest
@@ -122,6 +123,14 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("a");
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void VictoriaNotificada()
+        {
+            var consola = new ConsolaJuego();
+            //consola.IngresarLetra("a");
             Assert.Fail();
         }
     }
