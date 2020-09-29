@@ -97,5 +97,18 @@ namespace Ahorcado.UnitTest
             bool palabraEsIgual = logica.ValidarPalabra();
             Assert.IsTrue(palabraEsIgual);
         }
+
+        [TestMethod]
+        public void Ingresar_Una_Letra_Inexistente()
+        {
+
+        }
+
+
+        [TestMethod]
+        public void Ingresar_Una_Letra_Existente()
+        {
+
+        }
     }
 }
