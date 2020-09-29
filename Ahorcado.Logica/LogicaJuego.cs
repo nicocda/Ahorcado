@@ -21,6 +21,12 @@ namespace Ahorcado.Logica
             this.Juego.PalabraIngresada = v;
         }
 
+        public int RetornarTamañodePalabra()
+        {
+            return this.Juego.Palabra.Length;
+        }
+
+
         public bool ValidarPalabra()
         {
             return (this.Juego.PalabraIngresada == this.Juego.Palabra);
@@ -28,7 +34,12 @@ namespace Ahorcado.Logica
 
         public void IngresarLetra(string letra)
         {
-            throw new NotImplementedException();
+            if (letra == null)
+                throw new ArgumentNullException();
+            if (letra.Length != 1)
+                throw new ArgumentOutOfRangeException();
+
+            this.Juego.Letras.Add(letra);
         }
     }
 }
