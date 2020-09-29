@@ -18,6 +18,8 @@ namespace Ahorcado.Consola
 
             logica.IngresarLetra(Console.ReadLine());
 
+            Console.ReadKey();
+
         }
     }
 }
