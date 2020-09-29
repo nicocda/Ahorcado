@@ -144,12 +144,35 @@ namespace Ahorcado.UnitTest
             Assert.IsFalse(logica.Juego.Letras.Contains(null));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Ingresar_Letra_Empty()
+        {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("");
+            Assert.IsFalse(logica.Juego.Letras.Contains(""));
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Ingresar_Dos_Veces_Misma_Letra()
+        {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("a");
+            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
+
+            logica.IngresarLetra("a");
+            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
+        }
+
+
 
         [TestMethod]
         public void retornar_tamaño_palabra()
         {
             var logica = new LogicaJuego();
-            Assert.AreEqual(8, logica.RetornarTamañodePalabra());
+            Assert.AreEqual(logica.Juego.Palabra.Length, logica.RetornarTamañodePalabra());
         }
 
         [TestMethod]
@@ -168,5 +191,29 @@ namespace Ahorcado.UnitTest
             
             Assert.Fail();
         }
+
+
+        [TestMethod]
+        public void MostrarConsolaPorPalabra()
+        {
+            var logica = new LogicaJuego();
+            var consola = new ConsolaJuego();
+            var esperado = "El tamaño de la palabra es " + logica.RetornarTamañodePalabra().ToString();
+            var pal = consola.ComunicarTamPal();
+            Assert.AreEqual(esperado, pal);
+        }
+
+
+        [TestMethod]
+        public void IngresarPalabra()
+        {
+            var logica = new LogicaJuego();
+            var pal = "Hornitorrinco";
+            logica.IngresarPalbraEnJuego(pal);
+            Assert.AreEqual(pal, logica.Juego.Palabra);
+        }
+
+
+
     }
 }

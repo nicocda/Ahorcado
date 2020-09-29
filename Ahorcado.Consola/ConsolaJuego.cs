@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ahorcado.Logica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,14 @@ namespace Ahorcado.Consola
 {
     public class ConsolaJuego
     {
+        public String ComunicarTamPal()
+        {
+            LogicaJuego logica = new LogicaJuego();
+            var frase = "El tamaño de la palabra es " + logica.RetornarTamañodePalabra().ToString();
+            Console.WriteLine(frase);
+            return (frase);
+        }
+
 
     }
 }
