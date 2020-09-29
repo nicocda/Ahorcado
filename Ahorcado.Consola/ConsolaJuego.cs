@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ahorcado.Consola
 {
-    class Program
+    public class ConsolaJuego
     {
-        static void Main(string[] args)
-        {
-            
-        }
+
     }
 }

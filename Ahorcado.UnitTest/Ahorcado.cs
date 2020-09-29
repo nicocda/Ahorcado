@@ -2,6 +2,7 @@
 using System.Linq;
 using Ahorcado.Dominio;
 using Ahorcado.Logica;
+using Ahorcado.Consola;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Ahorcado.UnitTest
@@ -166,6 +167,14 @@ namespace Ahorcado.UnitTest
             var num = logica.RetornarTamañodePalabra();
             var tipo = num.GetType();
             Assert.IsTrue(tipo.Equals(typeof(int)));
+        }
+
+        [TestMethod]
+        public void VictoriaNotificada()
+        {
+            var consola = new ConsolaJuego();
+            //consola.IngresarLetra("a");
+            Assert.Fail();
         }
     }
 }
