@@ -9,7 +9,7 @@ namespace Ahorcado.Logica
 {
     public class LogicaJuego
     {
-        private Juego Juego;
+        public Juego Juego;
 
         public LogicaJuego()
         {

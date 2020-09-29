@@ -104,7 +104,6 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             logica.IngresarLetra("p");
 
-
             Assert.Fail();
         }
 
