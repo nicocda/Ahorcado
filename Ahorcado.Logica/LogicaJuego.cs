@@ -9,7 +9,7 @@ namespace Ahorcado.Logica
 {
     public class LogicaJuego
     {
-        private Juego Juego;
+        public Juego Juego;
 
         public LogicaJuego()
         {
@@ -30,6 +30,11 @@ namespace Ahorcado.Logica
         public bool ValidarPalabra()
         {
             return (this.Juego.PalabraIngresada == this.Juego.Palabra);
+        }
+
+        public void IngresarLetra(string letra)
+        {
+            throw new NotImplementedException();
         }
     }
 }
