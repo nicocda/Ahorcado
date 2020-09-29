@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Ahorcado.Consola
 {
-    public class ConsolaJuego
+    public static class ConsolaJuego
     {
-        public String ComunicarTamPal()
+        public static String ComunicarTamPal()
         {
             LogicaJuego logica = new LogicaJuego();
             var frase = "El tamaño de la palabra es " + logica.RetornarTamañodePalabra().ToString();

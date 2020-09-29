@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ahorcado.Logica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,13 @@ namespace Ahorcado.Consola
     {
         static void Main(string[] args)
         {
-            
+            LogicaJuego logica = new LogicaJuego();
+            Console.WriteLine("Bienvenidos al programa de mierda que hicimos para el ahorcado :)");
+            ConsolaJuego.ComunicarTamPal();
+            Console.WriteLine("Ingrese una letra");
+
+            logica.IngresarPalabra(Console.ReadLine());
+
         }
     }
 }
