@@ -17,6 +17,13 @@ namespace Ahorcado.Consola
             return (frase);
         }
 
+        public String ComunicarVictoria()
+        {
+            LogicaJuego logica = new LogicaJuego();
+            var frase = "Victoria";
+            Console.WriteLine(frase);
+            return (frase);
+        }
 
     }
 }
