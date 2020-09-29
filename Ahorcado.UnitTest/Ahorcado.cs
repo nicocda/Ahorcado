@@ -190,7 +190,6 @@ namespace Ahorcado.UnitTest
         public void VictoriaNotificada()
         {
             var logica = new LogicaJuego();
-            var consola = new ConsolaJuego();
             logica.IngresarPalabra("asadwerá");
             bool palabraEsIgual = logica.ValidarPalabra();
             Assert.IsTrue(palabraEsIgual);
