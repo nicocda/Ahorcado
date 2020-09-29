@@ -57,10 +57,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ahorcado.Consola\Ahorcado.Consola.csproj">
-      <Project>{b21139aa-6a70-413f-a7bc-d23703cc0ffc}</Project>
-      <Name>Ahorcado.Consola</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ahorcado.Dominio\Ahorcado.Dominio.csproj">
       <Project>{218CED53-44BE-476D-9759-A1E357781283}</Project>
       <Name>Ahorcado.Dominio</Name>

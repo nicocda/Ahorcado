@@ -47,6 +47,7 @@ namespace Ahorcado.Logica
 
             if (this.Juego.LetrasIngresadas.Contains(letra))
                 throw new ArgumentException("La letra ingresada ya existe");
+
             this.Juego.LetrasIngresadas.Add(letra);
         }
 
@@ -60,5 +61,10 @@ namespace Ahorcado.Logica
             return Regex.Matches(this.Juego.Palabra, letra.ToString()).Count; 
         }
 
+        public String ComunicarTamPal()
+        {
+            var frase = "El tamaño de la palabra es " + this.RetornarTamañodePalabra().ToString();
+            return (frase);
+        }
     }
 }

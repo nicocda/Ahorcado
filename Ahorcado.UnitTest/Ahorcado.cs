@@ -2,7 +2,6 @@
 using System.Linq;
 using Ahorcado.Dominio;
 using Ahorcado.Logica;
-using Ahorcado.Consola;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Ahorcado.UnitTest
@@ -200,9 +199,8 @@ namespace Ahorcado.UnitTest
         public void MostrarConsolaPorPalabra()
         {
             var logica = new LogicaJuego();
-            var consola = new ConsolaJuego();
-            var esperado = "El tamaño de la palabra es " + logica.RetornarTamañodePalabra().ToString();
-            var pal = consola.ComunicarTamPal();
+            var esperado = "El tamaño de la palabra es 8";
+            var pal = logica.ComunicarTamPal();
             Assert.AreEqual(esperado, pal);
         }
 
