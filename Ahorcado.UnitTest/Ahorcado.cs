@@ -151,5 +151,21 @@ namespace Ahorcado.UnitTest
             logica.IngresarLetra("");
             Assert.IsFalse(logica.Juego.Letras.Contains(""));
         }
+
+        [TestMethod]
+        public void retornar_tamaño_palabra()
+        {
+            var logica = new LogicaJuego();
+            Assert.AreEqual(8, logica.RetornarTamañodePalabra());
+        }
+
+        [TestMethod]
+        public void retornar_tamaño_palabra_es_Numero()
+        {
+            var logica = new LogicaJuego();
+            var num = logica.RetornarTamañodePalabra();
+            var tipo = num.GetType();
+            Assert.IsTrue(tipo.Equals(typeof(int)));
+        }
     }
 }
