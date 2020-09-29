@@ -187,9 +187,11 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void VictoriaNotificada()
         {
-
-            
-            Assert.Fail();
+            var logica = new LogicaJuego();
+            var consola = new ConsolaJuego();
+            logica.IngresarPalabra("asadwerá");
+            bool palabraEsIgual = logica.ValidarPalabra();
+            Assert.IsTrue(palabraEsIgual);
         }
 
 
