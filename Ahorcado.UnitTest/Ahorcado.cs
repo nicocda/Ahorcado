@@ -190,9 +190,20 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void VictoriaNotificada()
         {
-            var consola = new ConsolaJuego();
-            //consola.IngresarLetra("a");
+
+            
             Assert.Fail();
+        }
+
+
+        [TestMethod]
+        public void MostrarConsolaPorPalabra()
+        {
+            var logica = new LogicaJuego();
+            var consola = new ConsolaJuego();
+            var esperado = "El tamaño de la palabra es " + logica.RetornarTamañodePalabra().ToString();
+            var pal = consola.ComunicarTamPal();
+            Assert.AreEqual(esperado, pal);
         }
 
 
