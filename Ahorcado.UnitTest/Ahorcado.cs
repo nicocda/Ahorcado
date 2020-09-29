@@ -105,8 +105,9 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             logica.IngresarLetra("p");
 
-            
-            Assert.IsTrue(logica.Juego.Letras.Contains("p"));
+                Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("p"));
+                Assert.IsFalse(logica.PertenecePalabra("p"));
+               
         }
 
         [TestMethod]
@@ -114,7 +115,8 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("_");
-            Assert.IsTrue(logica.Juego.Letras.Contains("_"));
+            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("_"));
+            Assert.IsFalse(logica.PertenecePalabra("_"));
         }
 
 
@@ -123,7 +125,8 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("a");
-            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
+            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
+            Assert.IsTrue(logica.PertenecePalabra("a"));
         }
 
         [TestMethod]
@@ -132,7 +135,7 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("aasd");
-            Assert.IsFalse(logica.Juego.Letras.Contains("aasd"));
+            Assert.IsFalse(logica.Juego.LetrasIngresadas.Contains("aasd"));
         }
 
         [TestMethod]
@@ -141,7 +144,7 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra(null);
-            Assert.IsFalse(logica.Juego.Letras.Contains(null));
+            Assert.IsFalse(logica.Juego.LetrasIngresadas.Contains(null));
         }
 
         [TestMethod]
@@ -150,7 +153,7 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("");
-            Assert.IsFalse(logica.Juego.Letras.Contains(""));
+            Assert.IsFalse(logica.Juego.LetrasIngresadas.Contains(""));
         }
 
 
@@ -160,10 +163,10 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("a");
-            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
+            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
 
             logica.IngresarLetra("a");
-            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
+            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
         }
 
 
@@ -187,8 +190,8 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void VictoriaNotificada()
         {
-            var consola = new ConsolaJuego();
-            //consola.IngresarLetra("a");
+
+            
             Assert.Fail();
         }
 
@@ -221,7 +224,6 @@ namespace Ahorcado.UnitTest
             logica.IngresarPalbraEnJuego(pal);
             Assert.AreEqual(3, logica.cantLetEnPal('o'));
         }
-
 
     }
 }
