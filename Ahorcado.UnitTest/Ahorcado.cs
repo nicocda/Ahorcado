@@ -153,6 +153,21 @@ namespace Ahorcado.UnitTest
             Assert.IsFalse(logica.Juego.Letras.Contains(""));
         }
 
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Ingresar_Dos_Veces_Misma_Letra()
+        {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("a");
+            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
+
+            logica.IngresarLetra("a");
+            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
+        }
+
+
+
         [TestMethod]
         public void retornar_tamaño_palabra()
         {
