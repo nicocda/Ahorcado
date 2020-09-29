@@ -216,6 +216,14 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(pal, logica.Juego.Palabra);
         }
 
+        [TestMethod]
+        public void ComprobarVecesQueApareceLetra()
+        {
+            var logica = new LogicaJuego();
+            var pal = "Hornitorrinco";
+            logica.IngresarPalbraEnJuego(pal);
+            Assert.AreEqual(3, logica.cantLetEnPal('o'));
+        }
 
     }
 }

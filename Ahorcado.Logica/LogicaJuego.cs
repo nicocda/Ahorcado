@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Ahorcado.Logica
 {
@@ -53,5 +54,11 @@ namespace Ahorcado.Logica
         {
             return this.Juego.Palabra.Contains(letra);
         }
+
+        public int cantLetEnPal(char letra)
+        {
+            return Regex.Matches(this.Juego.Palabra, letra.ToString()).Count; 
+        }
+
     }
 }
