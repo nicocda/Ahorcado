@@ -101,14 +101,28 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void Ingresar_Una_Letra_Inexistente()
         {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("p");
 
+
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Ingresar_Un_Simbolo()
+        {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("_");
+            Assert.Fail();
         }
 
 
         [TestMethod]
         public void Ingresar_Una_Letra_Existente()
         {
-
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("a");
+            Assert.Fail();
         }
     }
 }

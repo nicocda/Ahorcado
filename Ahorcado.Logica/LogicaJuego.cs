@@ -25,5 +25,10 @@ namespace Ahorcado.Logica
         {
             return (this.Juego.PalabraIngresada == this.Juego.Palabra);
         }
+
+        public void IngresarLetra(string letra)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
