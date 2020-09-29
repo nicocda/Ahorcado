@@ -34,7 +34,12 @@ namespace Ahorcado.Logica
 
         public void IngresarLetra(string letra)
         {
-            throw new NotImplementedException();
+            if (letra == null)
+                throw new ArgumentNullException();
+            if (letra.Length != 1)
+                throw new ArgumentOutOfRangeException();
+
+            this.Juego.Letras.Add(letra);
         }
     }
 }

@@ -104,7 +104,8 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             logica.IngresarLetra("p");
 
-            Assert.Fail();
+            
+            Assert.IsTrue(logica.Juego.Letras.Contains("p"));
         }
 
         [TestMethod]
@@ -112,7 +113,7 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("_");
-            Assert.Fail();
+            Assert.IsTrue(logica.Juego.Letras.Contains("_"));
         }
 
 
@@ -121,8 +122,27 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("a");
-            Assert.Fail();
+            Assert.IsTrue(logica.Juego.Letras.Contains("a"));
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Ingresar_Varias_Letras()
+        {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra("aasd");
+            Assert.IsFalse(logica.Juego.Letras.Contains("aasd"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Ingresar_Letra_Null()
+        {
+            var logica = new LogicaJuego();
+            logica.IngresarLetra(null);
+            Assert.IsFalse(logica.Juego.Letras.Contains(null));
+        }
+
 
         [TestMethod]
         public void retornar_tamaño_palabra()
