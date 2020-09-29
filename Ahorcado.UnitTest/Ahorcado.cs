@@ -148,7 +148,7 @@ namespace Ahorcado.UnitTest
         public void retornar_tamaño_palabra()
         {
             var logica = new LogicaJuego();
-            Assert.AreEqual(8, logica.RetornarTamañodePalabra());
+            Assert.AreEqual(logica.Juego.Palabra.Length, logica.RetornarTamañodePalabra());
         }
 
         [TestMethod]
@@ -159,5 +159,18 @@ namespace Ahorcado.UnitTest
             var tipo = num.GetType();
             Assert.IsTrue(tipo.Equals(typeof(int)));
         }
+
+
+        [TestMethod]
+        public void IngresarPalabra()
+        {
+            var logica = new LogicaJuego();
+            var pal = "Hornitorrinco";
+            logica.IngresarPalbraEnJuego(pal);
+            Assert.AreEqual(pal, logica.Juego.Palabra);
+        }
+
+
+
     }
 }
