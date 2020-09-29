@@ -179,6 +179,17 @@ namespace Ahorcado.UnitTest
 
 
         [TestMethod]
+        public void MostrarConsolaPorPalabra()
+        {
+            var logica = new LogicaJuego();
+            var consola = new ConsolaJuego();
+            var esperado = "El tamaño de la palabra es " + logica.RetornarTamañodePalabra().ToString();
+            var pal = consola.ComunicarTamPal();
+            Assert.AreEqual(esperado, pal);
+        }
+
+
+        [TestMethod]
         public void IngresarPalabra()
         {
             var logica = new LogicaJuego();
