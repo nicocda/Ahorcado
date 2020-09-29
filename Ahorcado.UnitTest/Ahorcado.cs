@@ -164,8 +164,8 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void VictoriaNotificada()
         {
-            var consola = new ConsolaJuego();
-            //consola.IngresarLetra("a");
+
+            
             Assert.Fail();
         }
     }
