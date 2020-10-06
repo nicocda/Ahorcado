@@ -245,7 +245,8 @@ namespace Ahorcado.UnitTest
         public void RevisarQueLetraNoPerteneceALaPalabra()
         {
             //Arrange
-            var logica = new LogicaJuego("Ornitorrinco");
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
             //Act
             int cant = logica.cantLetEnPal('u');
             //Assert
@@ -261,7 +262,6 @@ namespace Ahorcado.UnitTest
             //Arrange
             var logica = new LogicaJuego();
             logica.IngresarPalbraEnJuego("Hornitorrinco");
-            var logica = new LogicaJuego("Ornitorrinco");
             //Act
             int cant = logica.cantLetEnPal('o');
             logica.AumentarScore(cant);
@@ -273,7 +273,8 @@ namespace Ahorcado.UnitTest
         public void DisminuirScorePorLetrasIngresadaErronea()
         {
             //Arrange
-            var logica = new LogicaJuego("Ornitorrinco");
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
             logica.Juego.Score = 500;
             var score = logica.Juego.Score;
             //Act
@@ -291,7 +292,8 @@ namespace Ahorcado.UnitTest
         public void AsegurarQueElScoreNoBajaDeCero()
         {
             //Arrange
-            var logica = new LogicaJuego("Ornitorrinco");
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
             logica.Juego.Score = 30;
             var score = logica.Juego.Score;
             //Act
