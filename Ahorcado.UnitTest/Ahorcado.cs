@@ -115,8 +115,9 @@ namespace Ahorcado.UnitTest
         public void Ingresar_Un_Simbolo()
         {
             //Arrange
-            var logica = new LogicaJuego("Palabra");
-            
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Palabra");
+
             //Act
             logica.IngresarLetra("_");
 
@@ -178,14 +179,14 @@ namespace Ahorcado.UnitTest
         public void retornar_tamaño_palabra()
         {
             var logica = new LogicaJuego();
-            Assert.AreEqual(logica.Juego.PalabraAAdivinar.Length, logica.RetornarTamañodePalabra());
+            Assert.AreEqual(logica.Juego.PalabraAAdivinar.Length, logica.GetTamañoPalabra());
         }
 
         [TestMethod]
         public void retornar_tamaño_palabra_es_Numero()
         {
             var logica = new LogicaJuego();
-            var num = logica.RetornarTamañodePalabra();
+            var num = logica.GetTamañoPalabra();
             var tipo = num.GetType();
             Assert.IsTrue(tipo.Equals(typeof(int)));
         }
@@ -258,6 +259,8 @@ namespace Ahorcado.UnitTest
         public void AumentarScorePorLetrasIngresadas()
         {
             //Arrange
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
             var logica = new LogicaJuego("Ornitorrinco");
             //Act
             int cant = logica.cantLetEnPal('o');

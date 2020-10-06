@@ -1,9 +1,5 @@
 ﻿using Ahorcado.Dominio;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace Ahorcado.Logica
@@ -16,18 +12,14 @@ namespace Ahorcado.Logica
         {
             Juego = new Juego();
         }
-        public LogicaJuego(string v)
-        {
-            Juego = new Dominio.Juego();
-            Juego.PalabraAAdivinar = v;
-        }
+
 
         public void IngresarPalabra(string v)
         {
             this.Juego.PalabraIngresada = v;
         }
 
-        public int RetornarTamañodePalabra()
+        public int GetTamañoPalabra()
         {
             return this.Juego.PalabraAAdivinar.Length;
         }
@@ -35,6 +27,11 @@ namespace Ahorcado.Logica
         public void IngresarPalbraEnJuego(string pal)
         {
             this.Juego.PalabraAAdivinar = pal;
+            this.Juego.PalabraModeloActual = "";
+            for (int i = 0; i < this.GetTamañoPalabra(); i++)
+            {
+                this.Juego.PalabraModeloActual += "*";
+            }
         }
 
         public bool ValidarPalabra()
@@ -63,7 +60,7 @@ namespace Ahorcado.Logica
 
         public String ComunicarTamPal()
         {
-            var frase = "El tamaño de la palabra es " + this.RetornarTamañodePalabra().ToString();
+            var frase = "El tamaño de la palabra es " + this.GetTamañoPalabra().ToString();
             return (frase);
         }
 
@@ -79,7 +76,13 @@ namespace Ahorcado.Logica
             var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
             return (frase);
         }
-        
+
+        public String ComunicarEstadoPalabra()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
+            return (frase);
+        }
 
         //-----------------Seccion de Scoring --------------------------//
 
