@@ -2,6 +2,7 @@
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Ahorcado.Logica
 {
@@ -111,7 +112,15 @@ namespace Ahorcado.Logica
             var frase = juego.PalabraModeloActual;
             return (frase);
         }
-
+        public String LetrasQueNoEstan()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var letras = juego.LetrasIngresadas;
+            var frase = "";
+            //juego.LetrasIngresadas.Where
+            //var letrasNo;
+            return (frase);
+        }
         //-----------------Seccion de Scoring --------------------------//
 
         private void AumentarScore(int aciertos)
