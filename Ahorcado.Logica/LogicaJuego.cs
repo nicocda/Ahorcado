@@ -1,5 +1,6 @@
 ﻿using Ahorcado.Dominio;
 using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Ahorcado.Logica
@@ -50,7 +51,24 @@ namespace Ahorcado.Logica
                 throw new ArgumentException("La letra ingresada ya existe");
 
             this.Juego.LetrasIngresadas.Add(letra);
+            ActualizarEstadoModelo(letra[0]);
         }
+
+        public void ActualizarEstadoModelo(char letra)
+        {
+            if(cantLetEnPal(letra) > 0)
+            {
+                int indx = this.Juego.PalabraAAdivinar.IndexOf(letra);
+                while (indx >= 0){
+                    StringBuilder sb = new StringBuilder(this.Juego.PalabraModeloActual);
+                    sb[indx] = letra;
+                    this.Juego.PalabraModeloActual = sb.ToString();
+
+                    indx = this.Juego.PalabraAAdivinar.IndexOf(letra, indx);
+                }
+            }
+        }
+
 
         public int cantLetEnPal(char letra)
         {
