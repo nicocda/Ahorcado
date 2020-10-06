@@ -236,5 +236,27 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(3, logica.cantLetEnPal('o'));
         }
 
+
+
+        //---------------Tests de scoring ----------------//
+
+        [TestMethod]
+        public void AumentarScorePorLetrasIngresadas()
+        {
+            //Arrange
+            var logica = new LogicaJuego("Hornitorrinco");
+            //Act
+            int cant = logica.cantLetEnPal('o');
+            logica.AumentarScore(cant);
+            //Assert
+            Assert.AreEqual(300, logica.Juego.Score);
+        }
+
+
+
+
+
+
+
     }
 }

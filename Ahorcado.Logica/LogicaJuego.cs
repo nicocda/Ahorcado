@@ -84,5 +84,20 @@ namespace Ahorcado.Logica
             return (frase);
         }
         
+
+        //-----------------Seccion de Scoring --------------------------//
+
+        public void AumentarScore(int aciertos)
+        {
+            this.Juego.Score += 100*aciertos;
+        }
+
+        public void DisminuirScore()
+        {
+            this.Juego.Score -= 50;
+        }
+
+
+
     }
 }
