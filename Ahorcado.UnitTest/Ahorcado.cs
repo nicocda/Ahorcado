@@ -229,5 +229,16 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(3, logica.cantLetEnPal('o'));
         }
 
+        public void EstadoPalabraNotificada()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var logica = new LogicaJuego();
+
+            var esperado = logica.ComunicarEstadoPalabra();
+
+                //logica.ComunicarDerrota();
+            Assert.AreEqual(esperado, pal);
+        }
+
     }
 }
