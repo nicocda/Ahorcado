@@ -14,7 +14,7 @@ namespace Ahorcado.UnitTest
         {
             Dominio.Juego juego = new Dominio.Juego();
 
-            bool contieneUnNumero = !juego.Palabra.Any(char.IsDigit);
+            bool contieneUnNumero = !juego.PalabraAAdivinar.Any(char.IsDigit);
             Assert.IsTrue(contieneUnNumero);
         }
 
@@ -23,7 +23,7 @@ namespace Ahorcado.UnitTest
         {
             Dominio.Juego juego = new Dominio.Juego();
 
-            Assert.AreEqual(juego.Palabra.Length, 8);
+            Assert.AreEqual(juego.PalabraAAdivinar.Length, 8);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace Ahorcado.UnitTest
         {
             Dominio.Juego juego = new Dominio.Juego();
 
-            bool todasLetras = juego.Palabra.All(char.IsLetter);
+            bool todasLetras = juego.PalabraAAdivinar.All(char.IsLetter);
             Assert.IsTrue(todasLetras);
         }
 
@@ -40,7 +40,7 @@ namespace Ahorcado.UnitTest
         {
             Dominio.Juego juego = new Dominio.Juego();
 
-            bool conieneEspacios = juego.Palabra.Any(c=> c.Equals(" "));
+            bool conieneEspacios = juego.PalabraAAdivinar.Any(c=> c.Equals(" "));
             Assert.IsFalse(conieneEspacios);
         }
 
@@ -99,23 +99,30 @@ namespace Ahorcado.UnitTest
         }
 
         [TestMethod]
-        public void Ingresar_Una_Letra_Inexistente()
+        public void Ingresar_Una_Letra_Que_No_Forme_Parte_de_La_Palabra()
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("p");
-
-                Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("p"));
-                Assert.IsFalse(logica.PertenecePalabra("p"));
+            
+            //Hacerlo en dos test
+            //Hacer test muy simples y muchos
+            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("p"));
+            //Assert.IsFalse(logica.PertenecePalabra("p"));
                
         }
 
         [TestMethod]
         public void Ingresar_Un_Simbolo()
         {
-            var logica = new LogicaJuego();
+            //Arrange
+            var logica = new LogicaJuego("Palabra");
+            
+            //Act
             logica.IngresarLetra("_");
+
+            //Assert
             Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("_"));
-            Assert.IsFalse(logica.PertenecePalabra("_"));
+            //Assert.IsFalse(logica.PertenecePalabra("_"));
         }
 
         [TestMethod]
@@ -170,7 +177,7 @@ namespace Ahorcado.UnitTest
         public void retornar_tamaño_palabra()
         {
             var logica = new LogicaJuego();
-            Assert.AreEqual(logica.Juego.Palabra.Length, logica.RetornarTamañodePalabra());
+            Assert.AreEqual(logica.Juego.PalabraAAdivinar.Length, logica.RetornarTamañodePalabra());
         }
 
         [TestMethod]
@@ -217,7 +224,7 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             var pal = "Hornitorrinco";
             logica.IngresarPalbraEnJuego(pal);
-            Assert.AreEqual(pal, logica.Juego.Palabra);
+            Assert.AreEqual(pal, logica.Juego.PalabraAAdivinar);
         }
 
         [TestMethod]
