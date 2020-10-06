@@ -79,7 +79,7 @@ namespace Ahorcado.Logica
         public String ComunicarEstadoPalabra()
         {
             Dominio.Juego juego = new Dominio.Juego();
-            var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
+            var frase = juego.PalabraModeloActual;
             return (frase);
         }
 
