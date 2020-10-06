@@ -118,7 +118,6 @@ namespace Ahorcado.UnitTest
             Assert.IsFalse(logica.PertenecePalabra("_"));
         }
 
-
         [TestMethod]
         public void Ingresar_Una_Letra_Existente()
         {
@@ -155,7 +154,6 @@ namespace Ahorcado.UnitTest
             Assert.IsFalse(logica.Juego.LetrasIngresadas.Contains(""));
         }
 
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Ingresar_Dos_Veces_Misma_Letra()
@@ -167,8 +165,6 @@ namespace Ahorcado.UnitTest
             logica.IngresarLetra("a");
             Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
         }
-
-
 
         [TestMethod]
         public void retornar_tamaño_palabra()
@@ -189,12 +185,21 @@ namespace Ahorcado.UnitTest
         [TestMethod]
         public void VictoriaNotificada()
         {
+            Dominio.Juego juego = new Dominio.Juego();
             var logica = new LogicaJuego();
-            logica.IngresarPalabra("asadwerá");
-            bool palabraEsIgual = logica.ValidarPalabra();
-            Assert.IsTrue(palabraEsIgual);
+            var esperado = "Felicitaciones" + juego.Usuario + "acertaste la palabra";
+            var pal = logica.ComunicarVictoria();
+            Assert.AreEqual(esperado, pal);
         }
-
+        [TestMethod]
+        public void DerrotaNotificada()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var logica = new LogicaJuego();
+            var esperado = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
+            var pal = logica.ComunicarDerrota();
+            Assert.AreEqual(esperado, pal);
+        }
 
         [TestMethod]
         public void MostrarConsolaPorPalabra()

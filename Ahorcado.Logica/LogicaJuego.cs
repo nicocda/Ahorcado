@@ -66,5 +66,19 @@ namespace Ahorcado.Logica
             var frase = "El tamaño de la palabra es " + this.RetornarTamañodePalabra().ToString();
             return (frase);
         }
+
+        public String ComunicarVictoria()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var frase = "Felicitaciones" + juego.Usuario + "acertaste la palabra";
+            return (frase);
+        }
+        public String ComunicarDerrota()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
+            return (frase);
+        }
+        
     }
 }

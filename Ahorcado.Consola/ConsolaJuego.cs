@@ -20,7 +20,14 @@ namespace Ahorcado.Consola
         public static String ComunicarVictoria()
         {
             LogicaJuego logica = new LogicaJuego();
-            var frase = "Victoria";
+            var frase = logica.ComunicarVictoria();
+            Console.WriteLine(frase);
+            return (frase);
+        }
+        public static String ComunicarDerrota()
+        {
+            LogicaJuego logica = new LogicaJuego();
+            var frase = logica.ComunicarDerrota();
             Console.WriteLine(frase);
             return (frase);
         }
