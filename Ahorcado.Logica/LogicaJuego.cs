@@ -51,12 +51,22 @@ namespace Ahorcado.Logica
                 throw new ArgumentException("La letra ingresada ya existe");
 
             this.Juego.LetrasIngresadas.Add(letra);
-            ActualizarEstadoModelo(letra[0]);
+
+
+            var cant = GetCantidadAparicionesEnPalabra(letra[0]);
+            if (cant > 0)
+            {
+                this.AumentarScore(cant);
+                ActualizarEstadoModelo(letra[0]);
+            }
+            else
+                this.DisminuirScore();
+
         }
 
         public void ActualizarEstadoModelo(char letra)
         {
-            if(cantLetEnPal(letra) > 0)
+            if(GetCantidadAparicionesEnPalabra(letra) > 0)
             {
                 int indx = this.Juego.PalabraAAdivinar.IndexOf(letra);
                 while (indx >= 0){
@@ -70,7 +80,7 @@ namespace Ahorcado.Logica
         }
 
 
-        public int cantLetEnPal(char letra)
+        public int GetCantidadAparicionesEnPalabra(char letra)
         {
 
             return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString()).Count; 
@@ -104,12 +114,12 @@ namespace Ahorcado.Logica
 
         //-----------------Seccion de Scoring --------------------------//
 
-        public void AumentarScore(int aciertos)
+        private void AumentarScore(int aciertos)
         {
             this.Juego.Score += 100*aciertos;
         }
 
-        public void DisminuirScore()
+        private void DisminuirScore()
         {
             if(this.Juego.Score > 50)
             {

@@ -133,7 +133,7 @@ namespace Ahorcado.UnitTest
             logica.IngresarPalabra("asawedá");
             logica.IngresarLetra("a");
             Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
-            Assert.IsTrue(logica.cantLetEnPal('a') > 0);
+            Assert.IsTrue(logica.GetCantidadAparicionesEnPalabra('a') > 0);
         }
 
         [TestMethod]
@@ -252,9 +252,23 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             var pal = "Ornitorrinco";
             logica.IngresarPalbraEnJuego(pal);
-            Assert.AreEqual(3, logica.cantLetEnPal('o'));
+            Assert.AreEqual(3, logica.GetCantidadAparicionesEnPalabra('o'));
         }
 
+        [TestMethod]
+        public void Comparar()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("ornitorrinco");
+            
+            
+            //Act
+            logica.IngresarLetra("o");
+
+            //Assert
+            Assert.AreEqual("o****o*****o", logica.Juego.PalabraModeloActual);
+        }
 
         //---------------Tests de ingreso de usuario-----------//
 
@@ -265,7 +279,7 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             logica.IngresarPalbraEnJuego("Hornitorrinco");
             //Act
-            int cant = logica.cantLetEnPal('u');
+            int cant = logica.GetCantidadAparicionesEnPalabra('u');
             //Assert
             Assert.AreEqual(0, cant);
         }
@@ -280,8 +294,7 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             logica.IngresarPalbraEnJuego("Hornitorrinco");
             //Act
-            int cant = logica.cantLetEnPal('o');
-            logica.AumentarScore(cant);
+            logica.IngresarLetra("o");
             //Assert
             Assert.AreEqual(300, logica.Juego.Score);
         }
@@ -295,12 +308,8 @@ namespace Ahorcado.UnitTest
             logica.Juego.Score = 500;
             var score = logica.Juego.Score;
             //Act
-            int cant = logica.cantLetEnPal('u');
-            if(cant == 0)
-            {
-                logica.DisminuirScore();
-            }
-            logica.AumentarScore(cant);
+
+            logica.IngresarLetra("u");
             //Assert
             Assert.AreEqual((score-50), logica.Juego.Score);
         }
@@ -314,12 +323,8 @@ namespace Ahorcado.UnitTest
             logica.Juego.Score = 30;
             var score = logica.Juego.Score;
             //Act
-            int cant = logica.cantLetEnPal('u');
-            if (cant == 0)
-            {
-                logica.DisminuirScore();
-            }
-            logica.AumentarScore(cant);
+            logica.IngresarLetra("u");
+
             //Assert
             Assert.AreEqual(0, logica.Juego.Score);
         }

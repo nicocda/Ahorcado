@@ -12,7 +12,10 @@ namespace Ahorcado.Dominio
         public string PalabraModeloActual = "********";
         public string Usuario = "John Cena";
         public string PalabraIngresada;
-        public int Score;
+        public int Score { get; set; }
         public List<string> LetrasIngresadas = new List<string>();
+
+
+
     }
 }
