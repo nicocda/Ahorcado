@@ -116,7 +116,6 @@ namespace Ahorcado.Logica
         public List<string> LetrasQueNoEstan()
         {
             Dominio.Juego juego = new Dominio.Juego();
-            //juego.LetrasIngresadas.Where(c => !juego.PalabraModeloActual.Contains(c)).ToList();
             return (juego.LetrasIngresadas.Where(c => !juego.PalabraModeloActual.Contains(c)).ToList());
         }
         //-----------------Seccion de Scoring --------------------------//
@@ -139,7 +138,12 @@ namespace Ahorcado.Logica
             
         }
 
-
+        public int GetScore()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var score = juego.Score;
+            return score;
+        }
 
 
 

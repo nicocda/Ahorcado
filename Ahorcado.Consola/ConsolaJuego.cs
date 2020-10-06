@@ -21,7 +21,7 @@ namespace Ahorcado.Consola
         {
             LogicaJuego logica = new LogicaJuego();
             var frase = logica.ComunicarVictoria();
-            Console.WriteLine(frase);
+            Console.WriteLine(frase + "Su score es: " + logica.GetScore());
             return (frase);
         }
         public static String ComunicarDerrota()
