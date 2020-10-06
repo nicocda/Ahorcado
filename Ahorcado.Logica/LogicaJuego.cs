@@ -14,7 +14,12 @@ namespace Ahorcado.Logica
 
         public LogicaJuego()
         {
+
+        }
+        public LogicaJuego(string v)
+        {
             Juego = new Dominio.Juego();
+            Juego.PalabraAAdivinar = v;
         }
 
         public void IngresarPalabra(string v)
@@ -24,18 +29,17 @@ namespace Ahorcado.Logica
 
         public int RetornarTamañodePalabra()
         {
-            return this.Juego.Palabra.Length;
+            return this.Juego.PalabraAAdivinar.Length;
         }
 
         public void IngresarPalbraEnJuego(string pal)
         {
-            this.Juego.Palabra = pal;
+            this.Juego.PalabraAAdivinar = pal;
         }
-
 
         public bool ValidarPalabra()
         {
-            return (this.Juego.PalabraIngresada == this.Juego.Palabra);
+            return (this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar);
         }
 
         public void IngresarLetra(string letra)
@@ -53,12 +57,12 @@ namespace Ahorcado.Logica
 
         public bool PertenecePalabra(string letra)
         {
-            return this.Juego.Palabra.Contains(letra);
+            return this.Juego.PalabraAAdivinar.Contains(letra);
         }
 
         public int cantLetEnPal(char letra)
         {
-            return Regex.Matches(this.Juego.Palabra, letra.ToString()).Count; 
+            return Regex.Matches(this.Juego.PalabraAAdivinar, letra.ToString()).Count; 
         }
 
         public String ComunicarTamPal()
