@@ -209,7 +209,24 @@ namespace Ahorcado.UnitTest
             var pal = logica.ComunicarDerrota();
             Assert.AreEqual(esperado, pal);
         }
-
+        [TestMethod]
+        public void EstadoPalabra()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var logica = new LogicaJuego();
+            var esperado = juego.PalabraModeloActual;
+            var pal = logica.ComunicarEstadoPalabra();
+            Assert.AreEqual(esperado, pal);
+        }
+        [TestMethod]
+        public void EstadoPalabraLetrasErroneas()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var logica = new LogicaJuego();
+            var esperado = juego.PalabraModeloActual;
+            var pal = logica.ComunicarEstadoPalabra();
+            Assert.AreEqual(esperado, pal);
+        }
         [TestMethod]
         public void MostrarConsolaPorPalabra()
         {
@@ -224,7 +241,7 @@ namespace Ahorcado.UnitTest
         public void IngresarPalabra()
         {
             var logica = new LogicaJuego();
-            var pal = "Hornitorrinco";
+            var pal = "Ornitorrinco";
             logica.IngresarPalbraEnJuego(pal);
             Assert.AreEqual(pal, logica.Juego.PalabraAAdivinar);
         }
@@ -233,11 +250,25 @@ namespace Ahorcado.UnitTest
         public void ComprobarVecesQueApareceLetra()
         {
             var logica = new LogicaJuego();
-            var pal = "Hornitorrinco";
+            var pal = "Ornitorrinco";
             logica.IngresarPalbraEnJuego(pal);
             Assert.AreEqual(3, logica.cantLetEnPal('o'));
         }
 
+
+        //---------------Tests de ingreso de usuario-----------//
+
+        [TestMethod]
+        public void RevisarQueLetraNoPerteneceALaPalabra()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
+            //Act
+            int cant = logica.cantLetEnPal('u');
+            //Assert
+            Assert.AreEqual(0, cant);
+        }
 
 
         //---------------Tests de scoring ----------------//
@@ -255,7 +286,43 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(300, logica.Juego.Score);
         }
 
+        [TestMethod]
+        public void DisminuirScorePorLetrasIngresadaErronea()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
+            logica.Juego.Score = 500;
+            var score = logica.Juego.Score;
+            //Act
+            int cant = logica.cantLetEnPal('u');
+            if(cant == 0)
+            {
+                logica.DisminuirScore();
+            }
+            logica.AumentarScore(cant);
+            //Assert
+            Assert.AreEqual((score-50), logica.Juego.Score);
+        }
 
+        [TestMethod]
+        public void AsegurarQueElScoreNoBajaDeCero()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
+            logica.Juego.Score = 30;
+            var score = logica.Juego.Score;
+            //Act
+            int cant = logica.cantLetEnPal('u');
+            if (cant == 0)
+            {
+                logica.DisminuirScore();
+            }
+            logica.AumentarScore(cant);
+            //Assert
+            Assert.AreEqual(0, logica.Juego.Score);
+        }
 
 
 

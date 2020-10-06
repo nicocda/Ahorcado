@@ -72,7 +72,8 @@ namespace Ahorcado.Logica
 
         public int cantLetEnPal(char letra)
         {
-            return Regex.Matches(this.Juego.PalabraAAdivinar, letra.ToString()).Count; 
+
+            return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString()).Count; 
         }
 
         public String ComunicarTamPal()
@@ -97,7 +98,7 @@ namespace Ahorcado.Logica
         public String ComunicarEstadoPalabra()
         {
             Dominio.Juego juego = new Dominio.Juego();
-            var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
+            var frase = juego.PalabraModeloActual;
             return (frase);
         }
 
@@ -110,8 +111,21 @@ namespace Ahorcado.Logica
 
         public void DisminuirScore()
         {
-            this.Juego.Score -= 50;
+            if(this.Juego.Score > 50)
+            {
+                this.Juego.Score -= 50;
+            } 
+            else 
+            {
+                this.Juego.Score = 0;
+            }
+            
         }
+
+
+
+
+
 
     }
 }
