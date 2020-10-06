@@ -95,8 +95,5 @@ namespace Ahorcado.Logica
             this.Juego.Score -= 50;
         }
 
-
-
->>>>>>> a7eb8f7efcfd56f1890bf768c52a7e547b4b3834
     }
 }
