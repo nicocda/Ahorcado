@@ -78,7 +78,13 @@ namespace Ahorcado.Logica
             var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
             return (frase);
         }
-        
+
+        public String ComunicarEstadoPalabra()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
+            return (frase);
+        }
 
         //-----------------Seccion de Scoring --------------------------//
 
@@ -94,5 +100,6 @@ namespace Ahorcado.Logica
 
 
 
+>>>>>>> a7eb8f7efcfd56f1890bf768c52a7e547b4b3834
     }
 }
