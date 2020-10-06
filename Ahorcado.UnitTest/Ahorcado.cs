@@ -246,7 +246,8 @@ namespace Ahorcado.UnitTest
         public void AumentarScorePorLetrasIngresadas()
         {
             //Arrange
-            var logica = new LogicaJuego("Hornitorrinco");
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Hornitorrinco");
             //Act
             int cant = logica.cantLetEnPal('o');
             logica.AumentarScore(cant);
