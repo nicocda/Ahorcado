@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Ahorcado.Logica
 {
@@ -102,14 +103,11 @@ namespace Ahorcado.Logica
             var frase = juego.PalabraModeloActual;
             return (frase);
         }
-        public String LetrasQueNoEstan()
+        public List<string> LetrasQueNoEstan()
         {
             Dominio.Juego juego = new Dominio.Juego();
-            var letras = juego.LetrasIngresadas;
-            var frase = "";
-            //juego.LetrasIngresadas.Where
-            //var letrasNo;
-            return (frase);
+            //juego.LetrasIngresadas.Where(c => !juego.PalabraModeloActual.Contains(c)).ToList();
+            return (juego.LetrasIngresadas.Where(c => !juego.PalabraModeloActual.Contains(c)).ToList());
         }
         //-----------------Seccion de Scoring --------------------------//
 

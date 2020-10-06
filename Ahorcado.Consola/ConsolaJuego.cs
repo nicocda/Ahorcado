@@ -35,7 +35,7 @@ namespace Ahorcado.Consola
         {
             LogicaJuego logica = new LogicaJuego();
             var pal = logica.ComunicarEstadoPalabra();
-            Console.WriteLine(pal);
+            Console.WriteLine(pal + logica.LetrasQueNoEstan());
             return (pal);
         }
     }

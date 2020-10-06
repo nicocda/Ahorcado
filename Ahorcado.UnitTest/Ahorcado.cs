@@ -227,6 +227,14 @@ namespace Ahorcado.UnitTest
             var pal = logica.ComunicarEstadoPalabra();
             Assert.AreEqual(esperado, pal);
         }
+        public void ComunicarLetrasErroneas()
+        {
+            Dominio.Juego juego = new Dominio.Juego();
+            var logica = new LogicaJuego();
+            var esperado = juego.LetrasIngresadas.Where(c => !juego.PalabraModeloActual.Contains(c)).ToList();
+            var pal = logica.LetrasQueNoEstan();
+            Assert.AreEqual(esperado, pal);
+        }
         [TestMethod]
         public void MostrarConsolaPorPalabra()
         {
