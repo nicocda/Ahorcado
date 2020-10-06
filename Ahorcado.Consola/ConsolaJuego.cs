@@ -12,7 +12,7 @@ namespace Ahorcado.Consola
         public static String ComunicarTamPal()
         {
             LogicaJuego logica = new LogicaJuego();
-            var frase = "El tamaño de la palabra es " + logica.RetornarTamañodePalabra().ToString();
+            var frase = "El tamaño de la palabra es " + logica.GetTamañoPalabra().ToString();
             Console.WriteLine(frase);
             return (frase);
         }
