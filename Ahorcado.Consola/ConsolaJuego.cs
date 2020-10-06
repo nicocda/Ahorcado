@@ -31,6 +31,12 @@ namespace Ahorcado.Consola
             Console.WriteLine(frase);
             return (frase);
         }
-
+        public static String ComunicarEstadoPalabra()
+        {
+            LogicaJuego logica = new LogicaJuego();
+            var pal = logica.ComunicarEstadoPalabra();
+            Console.WriteLine(pal);
+            return (pal);
+        }
     }
 }
