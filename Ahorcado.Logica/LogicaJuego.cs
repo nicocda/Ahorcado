@@ -14,7 +14,7 @@ namespace Ahorcado.Logica
 
         public LogicaJuego()
         {
-
+            Juego = new Juego();
         }
         public LogicaJuego(string v)
         {
@@ -53,11 +53,6 @@ namespace Ahorcado.Logica
                 throw new ArgumentException("La letra ingresada ya existe");
 
             this.Juego.LetrasIngresadas.Add(letra);
-        }
-
-        public bool PertenecePalabra(string letra)
-        {
-            return this.Juego.PalabraAAdivinar.Contains(letra);
         }
 
         public int cantLetEnPal(char letra)

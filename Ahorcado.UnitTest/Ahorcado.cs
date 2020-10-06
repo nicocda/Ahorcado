@@ -99,7 +99,7 @@ namespace Ahorcado.UnitTest
         }
 
         [TestMethod]
-        public void Ingresar_Una_Letra_Que_No_Forme_Parte_de_La_Palabra()
+        public void Ingresar_Una_Letra_Que_No_Forme_Parte_De_La_Palabra()
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("p");
@@ -129,9 +129,10 @@ namespace Ahorcado.UnitTest
         public void Ingresar_Una_Letra_Existente()
         {
             var logica = new LogicaJuego();
+            logica.IngresarPalabra("asawedá");
             logica.IngresarLetra("a");
             Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
-            Assert.IsTrue(logica.PertenecePalabra("a"));
+            Assert.IsTrue(logica.cantLetEnPal('a') > 0);
         }
 
         [TestMethod]
