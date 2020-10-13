@@ -285,7 +285,7 @@ namespace Ahorcado.UnitTest
         {
             //Arrange
             var logica = new LogicaJuego();
-            logica.IngresarPalbraEnJuego("Hornitorrinco");
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
             //Act
             int cant = logica.GetCantidadAparicionesEnPalabra('u');
             //Assert
@@ -300,7 +300,7 @@ namespace Ahorcado.UnitTest
         {
             //Arrange
             var logica = new LogicaJuego();
-            logica.IngresarPalbraEnJuego("Hornitorrinco");
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
             //Act
             logica.IngresarLetra("o");
             //Assert
@@ -312,7 +312,7 @@ namespace Ahorcado.UnitTest
         {
             //Arrange
             var logica = new LogicaJuego();
-            logica.IngresarPalbraEnJuego("Hornitorrinco");
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
             logica.Juego.Score = 500;
             var score = logica.Juego.Score;
             //Act
@@ -327,7 +327,7 @@ namespace Ahorcado.UnitTest
         {
             //Arrange
             var logica = new LogicaJuego();
-            logica.IngresarPalbraEnJuego("Hornitorrinco");
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
             logica.Juego.Score = 30;
             var score = logica.Juego.Score;
             //Act

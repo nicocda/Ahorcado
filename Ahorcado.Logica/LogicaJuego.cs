@@ -85,7 +85,7 @@ namespace Ahorcado.Logica
         public int GetCantidadAparicionesEnPalabra(char letra)
         {
 
-            return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString()).Count; 
+            return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString().ToLower()).Count; 
         }
 
         public String ComunicarTamPal()
