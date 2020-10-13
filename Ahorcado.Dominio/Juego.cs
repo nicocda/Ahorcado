@@ -10,7 +10,7 @@ namespace Ahorcado.Dominio
     {
         public string PalabraAAdivinar = "asadwerá";
         public string PalabraModeloActual = "********";
-        public string Usua rio = "John Cena";
+        public string Usuario = "John Cena";
         public string PalabraIngresada;
         public int Score { get; set; }
         public List<string> LetrasIngresadas = new List<string>();
