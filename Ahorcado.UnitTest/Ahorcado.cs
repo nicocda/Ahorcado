@@ -337,7 +337,21 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(0, logica.Juego.Score);
         }
 
-        //Este es un test de travis. 
+        //--------------------------Seccion de vidas----------------------//
+
+
+        [TestMethod]
+        public void Parametrizar5VidasEnJuego()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            //Act
+            logica.parametrizarVidas(5);
+
+            //Assert
+            Assert.AreEqual(logica.Juego.Vidas, 5);
+        }
+
 
 
 
