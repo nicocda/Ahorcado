@@ -76,7 +76,7 @@ namespace Ahorcado.Logica
                     sb[indx] = letra;
                     this.Juego.PalabraModeloActual = sb.ToString();
 
-                    indx = this.Juego.PalabraAAdivinar.IndexOf(letra, indx);
+                    indx = this.Juego.PalabraAAdivinar.IndexOf(letra, indx+1);
                 }
             }
         }
@@ -145,7 +145,11 @@ namespace Ahorcado.Logica
             return score;
         }
 
+        //--------------------------Seccion de vidas----------------------//
 
+        public void parametrizarVidas(int vidas) {
+            this.Juego.Vidas = vidas;
+        }
 
 
     }
