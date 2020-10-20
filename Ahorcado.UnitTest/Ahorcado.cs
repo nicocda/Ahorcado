@@ -337,7 +337,7 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(0, logica.Juego.Score);
         }
 
-        //Este es un mensaje de testing.
+        //Este es un test de travis. 
 
 
 
