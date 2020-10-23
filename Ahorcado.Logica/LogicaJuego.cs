@@ -16,7 +16,10 @@ namespace Ahorcado.Logica
             Juego = new Juego();
         }
 
-
+        public String PalabraIngresada()
+        {
+            return Juego.PalabraIngresada;
+        }
         public void IngresarPalabra(string v)
         {
             this.Juego.PalabraIngresada = v;
