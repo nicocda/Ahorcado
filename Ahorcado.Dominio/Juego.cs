@@ -15,6 +15,7 @@ namespace Ahorcado.Dominio
         public int Score { get; set; }
         public List<string> LetrasIngresadas = new List<string>();
         public  int Vidas { get; set; }
+        public bool estaVivo { get; set; }
 
 
 
