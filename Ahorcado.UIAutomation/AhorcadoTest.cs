@@ -22,8 +22,8 @@ namespace Ahorcado.UIAutomation
             baseURL = "http://localhost:39278/";
         }
 
-        [Given(@"Ingrese con una palabra")]
-        public void Probar_Palabra_Ingresada()
+        [Given(@"I have entered Ahorcado as the wordToGuess")]
+        public void GivenIHaveEnteredAhorcadoAsTheWordToGuess()
         {
             logicaJuego = new LogicaJuego();
             logicaJuego.IngresarPalabra("Ahorcado");

@@ -1,11 +1,10 @@
-﻿Feature: Hangman
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿Feature: Ahorcado
+	In order to play the game
+	As a player
+	I want to guess a word and know if I won or not
 
 @mytag
-Scenario: Add two numbers
-	Given the first number is 50
-	And the second number is 70
-	When the two numbers are added
-	Then the result should be 120
+Scenario: Loose the game
+	Given I have entered Ahorcado as the wordToGuess
+	When I enter X as the typedLetter five times
+	Then I should be told that I lost
