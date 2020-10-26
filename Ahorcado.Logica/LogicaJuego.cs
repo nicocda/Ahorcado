@@ -21,6 +21,7 @@ namespace Ahorcado.Logica
         public void IngresarPalabra(string v)
         {
             this.Juego.PalabraIngresada = v;
+            this.ValidarPalabra();
         }
 
         public int GetTamañoPalabra()
@@ -42,11 +43,13 @@ namespace Ahorcado.Logica
         {
             if(this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar)
             {
+                this.AumentarScoreFijo(2000);
                 return (this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar);
             } else
             {
                 this.RestarVidas();
-                this.detectarMuerte();
+                this.DisminuirScoreFijo(500);
+                this.detectarMuerte();            
                 return (this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar);
             }
             
@@ -135,6 +138,24 @@ namespace Ahorcado.Logica
         private void AumentarScore(int aciertos)
         {
             this.Juego.Score += 100*aciertos;
+        }
+
+        private void AumentarScoreFijo(int num)
+        {
+            this.Juego.Score += num;
+        }
+
+        private void DisminuirScoreFijo(int num)
+        {
+            if (this.Juego.Score - num > 0)
+            {
+                this.Juego.Score -= num;
+            }
+            else
+            {
+                this.Juego.Score = 0;
+            }
+
         }
 
         private void DisminuirScore()
