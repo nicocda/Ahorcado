@@ -66,6 +66,7 @@ namespace Ahorcado.Logica
             }
             else
                 this.DisminuirScore();
+                this.RestarVidas();
 
         }
 
@@ -150,8 +151,18 @@ namespace Ahorcado.Logica
 
         //--------------------------Seccion de vidas----------------------//
 
+
+        public int GetCantidadDeVidas()
+        {
+            return this.Juego.Vidas; 
+        }
+
         public void parametrizarVidas(int vidas) {
             this.Juego.Vidas = vidas;
+        }
+
+        public void RestarVidas() {
+            this.Juego.Vidas = this.Juego.Vidas - 1;
         }
 
 

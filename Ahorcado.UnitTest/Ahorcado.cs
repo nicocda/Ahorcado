@@ -340,6 +340,21 @@ namespace Ahorcado.UnitTest
         //--------------------------Seccion de vidas----------------------//
 
 
+
+        [TestMethod]
+        public void ObtenerVidasEnJuegoCuandoEstasSonCinco()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            int vidas = 0;
+            //Act
+            vidas = logica.GetCantidadDeVidas();
+            //Assert
+            Assert.AreEqual(vidas, 5);
+        }
+
+
         [TestMethod]
         public void Parametrizar5VidasEnJuego()
         {
@@ -352,8 +367,35 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(logica.Juego.Vidas, 5);
         }
 
+        [TestMethod]
+        public void restarUnaVidaPorPalabraErronea()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            logica.IngresarPalabra("Pato");
+            //Act
+            if (logica.ValidarPalabra() == false)
+            {
+                logica.RestarVidas();
+            }
+            //Assert
+            Assert.AreEqual(logica.Juego.Vidas, 4);
+        }
 
-
+        [TestMethod]
+        public void restarUnaVidaPorLetraErronea()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarLetra("a");
+            //Assert
+            Assert.AreEqual(logica.Juego.Vidas, 4);
+        }
 
 
     }
