@@ -278,6 +278,21 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual("o****o*****o", logica.Juego.PalabraModeloActual);
         }
 
+
+        [TestMethod]
+        public void ProbarPalabraErronea()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("ornitorrinco");
+            logica.IngresarPalabra("Pato");
+            //Act
+            bool result = logica.ValidarPalabra();
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
         //---------------Tests de ingreso de usuario-----------//
 
         [TestMethod]
@@ -337,6 +352,33 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(0, logica.Juego.Score);
         }
 
+        [TestMethod]
+        public void AumentarScorePorPalabraIngresada()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarPalabra("Ornitorrinco");
+            //Assert
+            Assert.AreEqual(2000, logica.Juego.Score);
+        }
+
+        [TestMethod]
+        public void DisminuirScorePorPalabraIngresadaErronea()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.Juego.Score = 5000;
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarPalabra("Pato");
+            //Assert
+            Assert.AreEqual(4500, logica.Juego.Score);
+        }
+
+
+
         //--------------------------Seccion de vidas----------------------//
 
 
@@ -376,11 +418,8 @@ namespace Ahorcado.UnitTest
             logica.IngresarPalbraEnJuego("Ornitorrinco");
             //Act
             logica.IngresarPalabra("Pato");
-            logica.ValidarPalabra();
             logica.IngresarPalabra("Pato");
-            logica.ValidarPalabra();
             logica.IngresarPalabra("Pato");
-            logica.ValidarPalabra();
             //Assert
             Assert.AreEqual(0, logica.GetCantidadDeVidas());
         }
@@ -395,9 +434,8 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             logica.parametrizarVidas(5);
             logica.IngresarPalbraEnJuego("Ornitorrinco");
-            logica.IngresarPalabra("Pato");
             //Act
-            logica.ValidarPalabra();
+            logica.IngresarPalabra("Pato");
             //Assert
             Assert.AreEqual(logica.Juego.Vidas, 4);
         }
