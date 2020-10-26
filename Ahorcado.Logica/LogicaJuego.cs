@@ -14,6 +14,7 @@ namespace Ahorcado.Logica
         public LogicaJuego()
         {
             Juego = new Juego();
+            Juego.estaVivo = true; 
         }
 
 
@@ -39,7 +40,16 @@ namespace Ahorcado.Logica
 
         public bool ValidarPalabra()
         {
-            return (this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar);
+            if(this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar)
+            {
+                return (this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar);
+            } else
+            {
+                this.RestarVidas();
+                this.detectarMuerte();
+                return (this.Juego.PalabraIngresada == this.Juego.PalabraAAdivinar);
+            }
+            
         }
 
         public void IngresarLetra(string letra)
@@ -64,6 +74,7 @@ namespace Ahorcado.Logica
             else
                 this.DisminuirScore();
                 this.RestarVidas();
+                this.detectarMuerte();
 
         }
 
@@ -148,6 +159,26 @@ namespace Ahorcado.Logica
 
         //--------------------------Seccion de vidas----------------------//
 
+
+        public void detectarMuerte()
+        {
+            if(this.detectar0vidas())
+            {
+                this.Juego.estaVivo = false; 
+            } 
+        }
+
+        public bool detectar0vidas()
+        {
+            if(this.Juego.Vidas == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public int GetCantidadDeVidas()
         {
