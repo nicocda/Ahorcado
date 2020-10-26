@@ -1,2 +1,8 @@
 language: csharp
 solution: Ahorcado.sln
+
+install:
+- dotnet restore
+script:
+- dotnet build Ahorcado.sln
+- dotnet test Ahorcado.UnitTest/Ahorcado.UnitTest.csproj
