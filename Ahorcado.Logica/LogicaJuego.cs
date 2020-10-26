@@ -148,6 +148,12 @@ namespace Ahorcado.Logica
 
         //--------------------------Seccion de vidas----------------------//
 
+
+        public int GetCantidadDeVidas()
+        {
+            return this.Juego.Vidas; 
+        }
+
         public void parametrizarVidas(int vidas) {
             this.Juego.Vidas = vidas;
         }

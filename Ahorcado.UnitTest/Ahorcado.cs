@@ -340,6 +340,21 @@ namespace Ahorcado.UnitTest
         //--------------------------Seccion de vidas----------------------//
 
 
+
+        [TestMethod]
+        public void ObtenerVidasEnJuegoCuandoEstasSonCinco()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            int vidas = 0;
+            //Act
+            vidas = logica.GetCantidadDeVidas();
+            //Assert
+            Assert.AreEqual(vidas, 5);
+        }
+
+
         [TestMethod]
         public void Parametrizar5VidasEnJuego()
         {
