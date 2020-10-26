@@ -340,6 +340,21 @@ namespace Ahorcado.UnitTest
         //--------------------------Seccion de vidas----------------------//
 
 
+
+        [TestMethod]
+        public void ObtenerVidasEnJuegoCuandoEstasSonCinco()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            int vidas = 0;
+            //Act
+            vidas = logica.GetCantidadDeVidas();
+            //Assert
+            Assert.AreEqual(vidas, 5);
+        }
+
+
         [TestMethod]
         public void Parametrizar5VidasEnJuego()
         {
@@ -352,8 +367,96 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(logica.Juego.Vidas, 5);
         }
 
+        [TestMethod]
+        public void detectarMuerte()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(3);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarPalabra("Pato");
+            logica.ValidarPalabra();
+            logica.IngresarPalabra("Pato");
+            logica.ValidarPalabra();
+            logica.IngresarPalabra("Pato");
+            logica.ValidarPalabra();
+            //Assert
+            Assert.AreEqual(0, logica.GetCantidadDeVidas());
+        }
 
 
+
+
+        [TestMethod]
+        public void restarUnaVidaPorPalabraErronea()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            logica.IngresarPalabra("Pato");
+            //Act
+            logica.ValidarPalabra();
+            //Assert
+            Assert.AreEqual(logica.Juego.Vidas, 4);
+        }
+
+        [TestMethod]
+        public void restarUnaVidaPorLetraErronea()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarLetra("a");
+            //Assert
+            Assert.AreEqual(logica.Juego.Vidas, 4);
+        }
+
+        [TestMethod]
+        public void DetectarMuerteAlLlegarA0Vidas()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(2);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            logica.IngresarLetra("a");
+            logica.IngresarPalabra("Pato");
+            logica.ValidarPalabra();
+            //Act
+            logica.detectarMuerte();
+            //Assert
+            Assert.AreEqual(logica.Juego.estaVivo, false);
+        }
+
+        [TestMethod]
+        public void DetectarMuerteAlErrarPalabra()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(1);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            logica.IngresarPalabra("Pato");
+            //Act
+            logica.ValidarPalabra();
+            //Assert
+            Assert.AreEqual(logica.Juego.estaVivo, false);
+        }
+
+        [TestMethod]
+        public void DetectarMuerteAlErrarLetra()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(1);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarLetra("a");
+            //Assert
+            Assert.AreEqual(logica.Juego.estaVivo, false);
+        }
 
 
     }
