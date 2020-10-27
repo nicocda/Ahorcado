@@ -66,8 +66,11 @@ namespace Ahorcado.Logica
                 throw new ArgumentOutOfRangeException("La letra debe contener solo un caracter");
 
             if (this.Juego.LetrasIngresadas.Contains(letra))
-                throw new ArgumentException("La letra ingresada ya existe");
-
+            {
+                this.DisminuirScore();
+                this.RestarVidas();
+                this.detectarMuerte();
+            }
             this.Juego.LetrasIngresadas.Add(letra);
 
 
@@ -78,10 +81,11 @@ namespace Ahorcado.Logica
                 ActualizarEstadoModelo(letra[0]);
             }
             else
+            {
                 this.DisminuirScore();
                 this.RestarVidas();
                 this.detectarMuerte();
-
+            }            
         }
 
         public void ActualizarEstadoModelo(char letra)

@@ -164,18 +164,6 @@ namespace Ahorcado.UnitTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Ingresar_Dos_Veces_Misma_Letra()
-        {
-            var logica = new LogicaJuego();
-            logica.IngresarLetra("a");
-            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
-
-            logica.IngresarLetra("a");
-            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
-        }
-
-        [TestMethod]
         public void retornar_tamaño_palabra()
         {
             var logica = new LogicaJuego();
@@ -381,8 +369,6 @@ namespace Ahorcado.UnitTest
 
         //--------------------------Seccion de vidas----------------------//
 
-
-
         [TestMethod]
         public void ObtenerVidasEnJuegoCuandoEstasSonCinco()
         {
@@ -423,9 +409,6 @@ namespace Ahorcado.UnitTest
             //Assert
             Assert.AreEqual(0, logica.GetCantidadDeVidas());
         }
-
-
-
 
         [TestMethod]
         public void restarUnaVidaPorPalabraErronea()
@@ -496,6 +479,31 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(logica.Juego.estaVivo, false);
         }
 
+        [TestMethod]
+        public void ValidarLetraExistente()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarLetra("o");
+            //Assert
+            Assert.AreEqual(logica.Juego.LetrasIngresadas.Contains("o"),true);
+        }
 
+        [TestMethod]
+        public void RestarVidaPorLetraExistente()
+        {
+            //Arrange
+            var logica = new LogicaJuego();
+            logica.parametrizarVidas(5);
+            logica.IngresarPalbraEnJuego("Ornitorrinco");
+            //Act
+            logica.IngresarLetra("o");
+            logica.IngresarLetra("o");
+            //Assert
+            Assert.AreEqual(logica.Juego.Vidas, 4);
+        }
     }
 }
