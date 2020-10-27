@@ -3,6 +3,15 @@
     ViewBag.Title = "Index";
 }
 
+@section scripts
+{
+    <script src="~/Scripts/Ahorcado/HangmanVM.js"></script>
+    <script type="text/javascript">
+        var hangVM = new HangmanVM(@Html.Raw(Model));
+        ko.applyBindings(hangVM);
+    </script>
+}
+
 <!DOCTYPE html>
 
 <html>
