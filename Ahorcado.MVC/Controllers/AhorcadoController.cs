@@ -8,20 +8,17 @@ namespace Ahorcado.MVC.Controllers
 {
     public class AhorcadoController : Controller
     {
-        public static LogicaJuego LJuego { get; set; }
 
-        // GET: Hangman
         public ActionResult AhorcadoView()
         {
             return View(new Ahorcado.MVC.Models.AhorcadoClass());
         }
 
         [HttpPost]
-        public JsonResult InsertePalabraAAdivinar(Models.AhorcadoClass model)
+        public JsonResult InsertePalabraAAdivinar(Models.AhorcadoClass model, string palabra)
         {
-            //LJuego = new LogicaJuego();
-            //LJuego.IngresarPalbraEnJuego(model.palabraAAdivinar);
-            //model.ChancesLeft = Juego.ChancesRestantes;
+
+            model.logica.IngresarPalbraEnJuego(palabra);
             return Json(model);
         }
 
