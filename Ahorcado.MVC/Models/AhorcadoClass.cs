@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using Ahorcado.Logica;
 
-namespace Ahorcado.Dominio
+namespace Ahorcado.MVC.Models
 {
-    public class Juego
+    public class AhorcadoClass
     {
-
-
         private String _PalabraAAdivinar;
 
         [DisplayName("Palabra a adivinar")]
@@ -87,15 +85,7 @@ namespace Ahorcado.Dominio
             set { _estaVivo = value; }
         }
 
-        //public string PalabraAAdivinar = "asadwerá";
-        //public string PalabraModeloActual = "********";
-        //public string Usuario = "John Cena";
-        //public string PalabraIngresada;
-        //public int Score { get; set; }
-        //public List<string> LetrasIngresadas = new List<string>();
-        //public int Vidas { get; set; }
-        //public bool estaVivo { get; set; }
-
+        public LogicaJuego logica;
 
 
     }
