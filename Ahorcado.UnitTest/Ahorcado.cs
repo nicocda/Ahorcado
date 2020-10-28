@@ -13,7 +13,7 @@ namespace Ahorcado.UnitTest
         public void Palabra_SinNumeros()
         {
             Dominio.Juego juego = new Dominio.Juego();
-
+            juego.PalabraAAdivinar="Palabra";
             bool contieneUnNumero = !juego.PalabraAAdivinar.Any(char.IsDigit);
             Assert.IsTrue(contieneUnNumero);
         }
@@ -22,6 +22,7 @@ namespace Ahorcado.UnitTest
         public void Palabra_CantidadLetras8()
         {
             Dominio.Juego juego = new Dominio.Juego();
+            juego.PalabraAAdivinar = "Palabras";
 
             Assert.AreEqual(juego.PalabraAAdivinar.Length, 8);
         }
@@ -30,7 +31,7 @@ namespace Ahorcado.UnitTest
         public void Palabra_SinSimbolosRaros()
         {
             Dominio.Juego juego = new Dominio.Juego();
-
+            juego.PalabraAAdivinar = "Palabras";
             bool todasLetras = juego.PalabraAAdivinar.All(char.IsLetter);
             Assert.IsTrue(todasLetras);
         }
@@ -39,18 +40,16 @@ namespace Ahorcado.UnitTest
         public void Palabra_SinEspacios()
         {
             Dominio.Juego juego = new Dominio.Juego();
-
+            juego.PalabraAAdivinar = "Palabras";
             bool conieneEspacios = juego.PalabraAAdivinar.Any(c=> c.Equals(" "));
             Assert.IsFalse(conieneEspacios);
         }
-
-
 
         [TestMethod]
         public void Usuario_NoNull()
         {
             Dominio.Juego juego = new Dominio.Juego();
-
+            juego.Usuario = "John Doe";
             Assert.IsNotNull(juego.Usuario);
         }
 
@@ -58,6 +57,7 @@ namespace Ahorcado.UnitTest
         public void Usuario_NoVacio()
         {
             Dominio.Juego juego = new Dominio.Juego();
+            juego.Usuario = "John Doe";
             Assert.IsFalse(string.IsNullOrEmpty(juego.Usuario));
         }
 
@@ -79,11 +79,11 @@ namespace Ahorcado.UnitTest
             Assert.IsFalse(todasLetras);
         }
 
-
         [TestMethod]
         public void Probar_Palabra_Ingresada()
         {
             LogicaJuego logica = new LogicaJuego();
+            logica.PalabraAAdivinar("asadwerá");
             logica.IngresarPalabra("asadwerá");
             bool palabraEsIgual = logica.ValidarPalabra();
             Assert.IsTrue(palabraEsIgual);
@@ -93,6 +93,7 @@ namespace Ahorcado.UnitTest
         public void Probar_Palabra_Ingresada_Sea_Igual()
         {
             var logica = new LogicaJuego();
+            logica.PalabraAAdivinar("asadwerá");
             logica.IngresarPalabra("asadwerá");
             bool palabraEsIgual = logica.ValidarPalabra();
             Assert.IsTrue(palabraEsIgual);
@@ -103,10 +104,11 @@ namespace Ahorcado.UnitTest
         {
             var logica = new LogicaJuego();
             logica.IngresarLetra("p");
-            
+            Dominio.Juego juego = new Dominio.Juego();
+            var letras = juego.LetrasIngresadas;
             //Hacerlo en dos test
             //Hacer test muy simples y muchos
-            Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("p"));
+            Assert.IsTrue(letras.Contains("p"));
             //Assert.IsFalse(logica.PertenecePalabra("p"));
                
         }
@@ -130,6 +132,7 @@ namespace Ahorcado.UnitTest
         public void Ingresar_Una_Letra_Existente()
         {
             var logica = new LogicaJuego();
+            logica.PalabraAAdivinar("asadwerá");
             logica.IngresarPalabra("asawedá");
             logica.IngresarLetra("a");
             //Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
@@ -215,6 +218,7 @@ namespace Ahorcado.UnitTest
             var pal = logica.ComunicarEstadoPalabra();
             Assert.AreEqual(esperado, pal);
         }
+        [TestMethod]
         public void ComunicarLetrasErroneas()
         {
             Dominio.Juego juego = new Dominio.Juego();
@@ -231,7 +235,6 @@ namespace Ahorcado.UnitTest
             var pal = logica.ComunicarTamPal();
             Assert.AreEqual(esperado, pal);
         }
-
 
         [TestMethod]
         public void IngresarPalabra()
@@ -257,7 +260,6 @@ namespace Ahorcado.UnitTest
             //Arrange
             var logica = new LogicaJuego();
             logica.IngresarPalbraEnJuego("ornitorrinco");
-            
             
             //Act
             logica.IngresarLetra("o");
