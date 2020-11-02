@@ -11,7 +11,8 @@
     <div>
         <h2>Testear conexion</h2>
         <button onclick="testearConexion()">Testear</button>
-        <label> Palbra a jugar: <input type="text" />  </label>
+        @Html.LabelFor(Model => Model.PalabraAAdivinar)
+        <input  type="text" onkeydown="ingresarPalbraAAdivinar(this)"/>
 
     </div>
 
