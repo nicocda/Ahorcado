@@ -1,7 +1,4 @@
-﻿@{
-    Layout = null;
-}
-
+﻿@model AhorcadoClass
 <!DOCTYPE html>
 <script src="~/Scripts/Ahorcado/RecursosAhorcado.js"></script>
 
@@ -12,10 +9,21 @@
 </head>
 <body>
     <div>
-    <h2>Testear conexion</h2>
+        <h2>Testear conexion</h2>
         <button onclick="testearConexion()">Testear</button>
         <label> Palbra a jugar: <input type="text" />  </label>
 
     </div>
+
+    <div>
+        <h2>Estado Situación</h2>
+        <ul>
+            <li>Letras Adivinadas: @Model.PalabraModeloActual</li>
+            <li>Score: @Model.Score</li>
+            <li>Vidas Restantes: @Model.Vidas</li>
+        </ul>
+    </div>
 </body>
 </html>
+
+
