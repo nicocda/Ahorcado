@@ -2,15 +2,20 @@
     console.log("Conexion establecida");
 }
 
-function ingresarPalbraAAdivinar(Palabra) {
-    var yo = this;
+function ingresarPalbraAAdivinar() {
+    var pal = document.getElementById("palAAdiv").value;
+    console.log(pal);
     console.log("Entro aca");
     $.ajax({
         url: "/Ahorcado/InsertePalabraAAdivinar",
-        data: model = this,
-        palabra = Palabra,
+        data: {
+            palabra: pal
+        },
         success: function(result) {
-            console.log(result)
+            document.getElementById("paladivin").innerHTML = "La palabra en juego es:" + result.PalabraAAdivinar;
+            document.getElementById("estado").innerHTML = result.PalabraModeloActual;
+            document.getElementById("score").innerHTML = result.Score;
+            document.getElementById("vidas").innerHTML = result.Vidas;
         }
     })
 
