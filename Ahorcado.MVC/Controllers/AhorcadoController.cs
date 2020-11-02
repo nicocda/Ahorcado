@@ -56,5 +56,28 @@ namespace Ahorcado.MVC.Controllers
         //    }
         //    model.LetterTyped = string.Empty;
         //    return Json(model);
+
+
+        [HttpGet]
+        public ActionResult _Victoria()
+        {
+            VidaMuerteViewModel vm = new VidaMuerteViewModel();
+            vm.Palabra = LJuego.Juego.PalabraAAdivinar;
+            vm.Score = LJuego.Juego.Score;
+            vm.Mensaje = "Felicitaciones Campepeón!!";
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult _Derrota()
+        {
+            VidaMuerteViewModel vm = new VidaMuerteViewModel();
+            vm.Palabra = LJuego.Juego.PalabraAAdivinar;
+            vm.Mensaje = "Lo siento, te quedaste sin vidas, mejor suerte la proxima";
+            if(LJuego.Juego.Score > 0)
+                return View("Error404");
+            return View();
+        }
     }
 }
