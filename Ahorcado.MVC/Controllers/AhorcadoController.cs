@@ -8,62 +8,35 @@ namespace Ahorcado.MVC.Controllers
 {
     public class AhorcadoController : Controller
     {
-        public static LogicaJuego LJuego { get; set; }
+        LogicaJuego logica = new LogicaJuego();
 
-        // GET: Hangman
         public ActionResult AhorcadoView()
         {
-            return View(new Ahorcado.MVC.Models.AhorcadoClass());
+            AhorcadoClass model = new AhorcadoClass();
+            return View(model);
         }
 
-        [HttpPost]
-        public JsonResult InsertePalabraAAdivinar(Models.AhorcadoClass model)
+        public ActionResult InsertePalabraAAdivinar(string palabra)
         {
-            //LJuego = new LogicaJuego();
-            //LJuego.IngresarPalbraEnJuego(model.palabraAAdivinar);
-            //model.ChancesLeft = Juego.ChancesRestantes;
-            return Json(model);
+
+            logica.IngresarPalbraEnJuego(palabra);
+            AhorcadoClass model = new AhorcadoClass();
+            model.PalabraModeloActual = logica.Juego.PalabraModeloActual;
+            model.Score = logica.Juego.Score;
+            model.Vidas = logica.Juego.Vidas;
+            model.PalabraAAdivinar = logica.Juego.PalabraAAdivinar;
+
+            return View("AhorcadoView", model);
         }
 
-
-        //[HttpPost]
-        //public JsonResult InsertWordToGuess(Models.Ahorcado model)
-        //{
-        //    LJuego = new LogicaJuego();
-        //    LJuego.IngresarPalbraEnJuego(model.WordToGuess);
-        //    //model.ChancesLeft = Juego.ChancesRestantes;
-        //    return Json(model);
-        //}
-
-        //[HttpPost]
-        //public JsonResult TryLetter(Models.Ahorcado model)
-        //{
-        //    LJuego.IngresarLetra(model.LetterTyped);
-        //    model.Win = LJuego.ValidarPalabra();
-        //    //model.ChancesLeft = LJuego.ChancesRestantes;
-        //    model.WrongLetters = string.Empty;
-        //    List<string> letrasErradas = LJuego.LetrasQueNoEstan();
-        //    foreach (var wLetter in letrasErradas)
-        //    {
-        //        model.WrongLetters += wLetter + ",";
-        //    }
-        //    model.GuessingWord = string.Empty;
-        //    string pal=LJuego.PalabraIngresada();
-        //    char[] palabra = pal.ToArray();
-        //    foreach (var rLetter in palabra)
-        //    {
-        //        model.GuessingWord += rLetter + " ";
-        //    }
-        //    model.LetterTyped = string.Empty;
-        //    return Json(model);
 
 
         [HttpGet]
         public ActionResult _Victoria()
         {
             VidaMuerteViewModel vm = new VidaMuerteViewModel();
-            vm.Palabra = LJuego.Juego.PalabraAAdivinar;
-            vm.Score = LJuego.Juego.Score;
+            vm.Palabra = logica.Juego.PalabraAAdivinar;
+            vm.Score = logica.Juego.Score;
             vm.Mensaje = "Felicitaciones Campepeón!!";
             return View();
         }
@@ -73,9 +46,9 @@ namespace Ahorcado.MVC.Controllers
         public ActionResult _Derrota()
         {
             VidaMuerteViewModel vm = new VidaMuerteViewModel();
-            vm.Palabra = LJuego.Juego.PalabraAAdivinar;
+            vm.Palabra = logica.Juego.PalabraAAdivinar;
             vm.Mensaje = "Lo siento, te quedaste sin vidas, mejor suerte la proxima";
-            if(LJuego.Juego.Score > 0)
+            if(logica.Juego.Score > 0)
                 return View("Error404");
             return View();
         }

@@ -195,7 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ahorcado.Dominio\Ahorcado.Dominio.csproj">
-      <Project>{218ced53-44be-476d-9759-a1e357781283}</Project>
+      <Project>{218CED53-44BE-476D-9759-A1E357781283}</Project>
       <Name>Ahorcado.Dominio</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ahorcado.Logica\Ahorcado.Logica.csproj">

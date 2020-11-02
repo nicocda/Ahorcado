@@ -9,6 +9,7 @@ namespace Ahorcado.MVC.Models
 {
     public class AhorcadoClass
     {
+
         private String _PalabraAAdivinar;
 
         [DisplayName("Palabra a adivinar")]
@@ -85,7 +86,7 @@ namespace Ahorcado.MVC.Models
             set { _estaVivo = value; }
         }
 
-        public LogicaJuego logica;
+
 
 
     }
