@@ -16,8 +16,13 @@
         <h2>Testear conexion</h2>
         <button onclick="testearConexion()">Testear</button>
         @Html.LabelFor(Model => Model.PalabraAAdivinar)
-        <input  type="text" onkeydown="ingresarPalbraAAdivinar(this)"/>
-
+        <input type="text"id="palAAdiv" /><button onclick="ingresarPalbraAAdivinar()">IngresarPalabra</button>
+        <h2 id="paladivin"></h2>
     </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

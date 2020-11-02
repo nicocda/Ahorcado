@@ -10,9 +10,6 @@ namespace Ahorcado.MVC.Models
     public class AhorcadoClass
     {
 
-
-        public LogicaJuego logica;
-
         private String _PalabraAAdivinar;
 
         [DisplayName("Palabra a adivinar")]

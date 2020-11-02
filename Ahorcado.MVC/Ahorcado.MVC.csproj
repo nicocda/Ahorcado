@@ -191,6 +191,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ahorcado.Dominio\Ahorcado.Dominio.csproj">
+      <Project>{218CED53-44BE-476D-9759-A1E357781283}</Project>
+      <Name>Ahorcado.Dominio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ahorcado.Logica\Ahorcado.Logica.csproj">
       <Project>{05545bf9-682e-4bee-8384-a33d78569423}</Project>
       <Name>Ahorcado.Logica</Name>

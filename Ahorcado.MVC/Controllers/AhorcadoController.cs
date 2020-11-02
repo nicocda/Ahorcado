@@ -9,17 +9,19 @@ namespace Ahorcado.MVC.Controllers
     public class AhorcadoController : Controller
     {
 
+        LogicaJuego logica = new LogicaJuego();
+
         public ActionResult AhorcadoView()
         {
-            return View(new Ahorcado.MVC.Models.AhorcadoClass());
+            AhorcadoClass model = new AhorcadoClass();
+            return View(model);
         }
 
-        [HttpPost]
-        public JsonResult InsertePalabraAAdivinar(Models.AhorcadoClass model, string palabra)
+        public string InsertePalabraAAdivinar(string palabra)
         {
 
-            model.logica.IngresarPalbraEnJuego(palabra);
-            return Json(model);
+            logica.IngresarPalbraEnJuego(palabra);
+            return logica.Juego.PalabraAAdivinar;
         }
 
 
