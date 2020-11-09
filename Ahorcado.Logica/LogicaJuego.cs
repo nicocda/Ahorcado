@@ -236,12 +236,15 @@ namespace Ahorcado.Logica
             this.Juego.Vidas = this.Juego.Vidas - 1;
         }
 
-        public void Situacion()
+        public string ObtenerPalabraTXT()
         {
-            Dominio.Juego juego = new Juego();
-            string usuario = juego.Usuario;
-            int score = GetScore();
-
+            var fileName = @"D:\Agiles\Ahorcado.Logica\Palabras\PalabrasAhorcado.txt";
+            var file = System.IO.File.ReadLines(fileName).ToList();
+            int count = file.Count();
+            Random rnd = new Random();
+            int skip = rnd.Next(0, count);
+            string line = file.Skip(skip).First();
+            return (line);
         }
     }
 }

@@ -13,7 +13,8 @@ namespace Ahorcado.Consola
         {
             LogicaJuego logica = new LogicaJuego();
             Console.WriteLine("Bienvenidos al programa de mierda que hicimos para el ahorcado :)");
-            Console.WriteLine(logica.ComunicarTamPal());
+            Console.WriteLine(ConsolaJuego.ComunicarPalabraTXT());
+            //Console.WriteLine(logica.ComunicarTamPal());
             Console.WriteLine("Ingrese una letra");
 
             logica.IngresarLetra(Console.ReadLine());
