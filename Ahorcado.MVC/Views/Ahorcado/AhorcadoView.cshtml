@@ -12,15 +12,38 @@
     <title>Ahorcado</title>
 </head>
 <body>
-    <div>
-        <h2>Testear conexion</h2>
-        <button onclick="testearConexion()">Testear</button>
-        @Html.LabelFor(Model => Model.PalabraAAdivinar)
-        <input type="text"id="palAAdiv" /><button onclick="ingresarPalbraAAdivinar()">IngresarPalabra</button>
-        <h2 id="paladivin"></h2>
-    </div>
+       <div class="container">
+           <table class="table-responsive table-bordered" style="background-color:lightgray">
+               <thead>
+                   <tr>
+                       <td><h2>Ahorcado</h2></td>              
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
 
+                       <td class="left">
+                           <label>Arriesgar Palabra </label> <br /> <input type="text" id="palIngre" class="form-control" /> <button type="button" class="form-control"> Arriesgar</button> <br /> <br />
+                           <label>Arriesgar Letra  </label> <br /> <input type="text" maxlength="1" id="letIngre" class="form-control" /><button type="button" class="form-control">Arriesgar</button><br />
 
+                       </td>
+                       <td class="right">
+                            <img src="~/Imagenes/3 corazones.png" width="150" height="100"/>
+                            <br />
+                           <label>Score: 0</label> <br />
+                           <label>Palabra: **********</label> <br />
+                           <label>Letras Ingresadas: </label> <br />
+                       </td>
+                   </tr>
+                   <tr>
+                       <td class="center-block">
+                           <button type="button" class="btn btn-lg btn-primary">Otra partida</button>
+                       </td>
+                   </tr>
+
+               </tbody>
+           </table>
+       </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
