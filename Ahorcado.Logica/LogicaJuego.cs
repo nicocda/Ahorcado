@@ -16,7 +16,15 @@ namespace Ahorcado.Logica
             Juego = new Juego();
             Juego.estaVivo = true; 
         }
+        public void PalabraAAdivinar(string v)
+        {
+            Juego.PalabraAAdivinar=v;
+        }
 
+        public List<string> LetrasIngresadas()
+        {
+            return Juego.LetrasIngresadas;
+        }
         public String PalabraIngresada()
         {
             return Juego.PalabraIngresada;
@@ -64,15 +72,22 @@ namespace Ahorcado.Logica
                 throw new ArgumentNullException("Ingrese una letra");
             if (letra.Length != 1)
                 throw new ArgumentOutOfRangeException("La letra debe contener solo un caracter");
-
-            if (this.Juego.LetrasIngresadas.Contains(letra))
+            var letrasIngresadas = this.LetrasIngresadas();
+            if(letrasIngresadas == null || letrasIngresadas.Count() == 0)
             {
-                this.DisminuirScore();
-                this.RestarVidas();
-                this.detectarMuerte();
+                //this.Juego.LetrasIngresadas.Add(letra);
+                letrasIngresadas = new List<string>();
+                letrasIngresadas.Add(letra);
             }
-            this.Juego.LetrasIngresadas.Add(letra);
-
+            else
+            {
+                if (letrasIngresadas.Contains(letra))
+                {
+                    this.DisminuirScore();
+                    this.RestarVidas();
+                    this.detectarMuerte();
+                }
+            }
 
             var cant = GetCantidadAparicionesEnPalabra(letra[0]);
             if (cant > 0)
@@ -85,7 +100,8 @@ namespace Ahorcado.Logica
                 this.DisminuirScore();
                 this.RestarVidas();
                 this.detectarMuerte();
-            }            
+            }
+            this.Juego.LetrasIngresadas = letrasIngresadas;
         }
 
         public void ActualizarEstadoModelo(char letra)
@@ -106,7 +122,6 @@ namespace Ahorcado.Logica
 
         public int GetCantidadAparicionesEnPalabra(char letra)
         {
-
             return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString().ToLower()).Count; 
         }
 

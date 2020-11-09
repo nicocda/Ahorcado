@@ -1,8 +1,4 @@
-﻿@model Ahorcado.MVC.Models.AhorcadoClass
-@{
-    Layout = null;
-}
-
+﻿@model AhorcadoClass
 <!DOCTYPE html>
 <script src="~/Scripts/Ahorcado/RecursosAhorcado.js"></script>
 
@@ -21,7 +17,6 @@
                </thead>
                <tbody>
                    <tr>
-
                        <td class="left">
                            <label>Arriesgar Palabra </label> <br /> <input type="text" id="palIngre" class="form-control" /> <button type="button" class="form-control"> Arriesgar</button> <br /> <br />
                            <label>Arriesgar Letra  </label> <br /> <input type="text" maxlength="1" id="letIngre" class="form-control" /><button type="button" class="form-control">Arriesgar</button><br />
@@ -45,7 +40,18 @@
            </table>
        </div>
 
+
+    <div>
+        <h2>Estado Situación</h2>
+        <ul>
+            <li>Letras Adivinadas: <div id="estado"></div></li>
+            <li>Score: <div id="score"></div></li>
+            <li>Vidas Restantes: <div id="vidas"></div></li>
+        </ul>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>
+
+

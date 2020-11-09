@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Models\Ahorcado.cs" />
     <Compile Include="Models\AhorcadoClass.cs" />
+    <Compile Include="Models\VidaMuerteViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +178,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Ahorcado\Index.cshtml" />
     <Content Include="Views\Ahorcado\AhorcadoView.cshtml" />
+    <Content Include="Views\Ahorcado\_Victoria.cshtml" />
+    <Content Include="Views\Ahorcado\_Derrota.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
