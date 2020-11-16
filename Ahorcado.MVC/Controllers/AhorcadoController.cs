@@ -9,19 +9,24 @@ namespace Ahorcado.MVC.Controllers
     public class AhorcadoController : Controller
     {
 
-        LogicaJuego logica = new LogicaJuego();
+        
 
         public ActionResult AhorcadoView()
         {
+            AhorcadoClass juego = new AhorcadoClass();
             AhorcadoClass model = new AhorcadoClass();
-            return View(model);
+            juego.logica.iniciarJuego();
+            return View(juego);
         }
 
-        public string InsertePalabraAAdivinar(string palabra)
+        public AhorcadoClass ArriesgarPalabra(string palAdiv, int score, int vidas, string pal)
         {
-
-            logica.IngresarPalbraEnJuego(palabra);
-            return logica.Juego.PalabraAAdivinar;
+            AhorcadoClass treta = new AhorcadoClass();
+            treta.logica.IngresarPalbraEnJuego(palAdiv);
+            treta.logica.Juego.Score = score;
+            treta.logica.Juego.Vidas = vidas;
+            treta.logica.IngresarPalabra(pal);
+            return treta;
         }
 
 
