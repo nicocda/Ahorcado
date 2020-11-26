@@ -29,7 +29,18 @@ namespace Ahorcado.MVC.Controllers
             return View("AhorcadoView", model);
         }
 
+        public ActionResult ArriesgarPalabra(FormCollection collection)
+        {
+            string palabra = collection.Get("palabraIngresada");
+            logica.IngresarPalabra(palabra);
+            AhorcadoClass model = new AhorcadoClass();
+            model.PalabraIngresada = logica.Juego.PalabraIngresada;
+            model.Score = logica.Juego.Score;
+            model.Vidas = logica.Juego.Vidas;
+            model.PalabraAAdivinar = logica.Juego.PalabraAAdivinar;
 
+            return View("AhorcadoView", model);
+        }
 
         [HttpGet]
         public ActionResult _Victoria()
