@@ -19,13 +19,9 @@
                     <td class="left">
                         @using (Html.BeginForm("ArriesgarPalabra", "Ahorcado"))
                         {
-
-                            <label>Arriesgar Palabra </label>
-                            <br />
+                            <label>Arriesgar Palabra </label><br />
                             <input type="text" name="palabraIngresada" id="palabraIngresada" class="form-control" />
-
                             <input class="form-control" id="submit" type="submit" value="Arriesgar" />
-
                         }
                     </td>
                 </tr>
@@ -36,14 +32,19 @@
                     <td class="right">
                         <img src="~/Imagenes/3 corazones.png" width="150" height="100" />
                         <br />
-                        <label>Score: 0</label> <br />
-                        <label>Palabra: **********</label> <br />
+                        <label>Score: @ViewBag.Score</label> <br />
+                        <label>Palabra: @ViewBag.PalabraModelo</label> <br />
+                        <label>@ViewBag.CantidadLetras</label><br />
                         <label>Letras Ingresadas: </label> <br />
                     </td>
                 </tr>
                 <tr>
-                    <td class="center-block">
-                        <button type="button" class="btn btn-lg btn-primary">Otra partida</button>
+                    <td class="left">
+                        @using (Html.BeginForm("ComenzarJuego", "Ahorcado"))
+                        {
+
+                            <input class="btn btn-lg btn-primary" id="submit" type="submit" value="Comenzar juego" />
+                        }
                     </td>
                 </tr>
 
@@ -56,11 +57,10 @@
         <h2>Estado Situación</h2>
         <ul>
             <li>Letras Adivinadas: <div id="estado"></div></li>
-            <li>Score: <div id="score"></div></li>
+            <li>Score: @ViewBag.Score<div id="score"></div></li>
             <li>Vidas Restantes: <div id="vidas"></div></li>
         </ul>
     </div>
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
