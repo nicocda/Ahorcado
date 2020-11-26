@@ -15,7 +15,19 @@ namespace Ahorcado.MVC.Controllers
             AhorcadoClass model = new AhorcadoClass();
             return View(model);
         }
-
+        public ActionResult ComenzarJuego()
+        {
+            AhorcadoClass model = new AhorcadoClass();
+            logica.IngresarPalbraEnJuego(logica.ObtenerPalabraTXT());
+            model.PalabraAAdivinar = logica.Juego.PalabraAAdivinar;
+            //ViewBag.PalabraAdivinar = model.PalabraAAdivinar;
+            model.PalabraModeloActual = logica.ComunicarEstadoPalabra();
+            ViewBag.PalabraModelo = model.PalabraModeloActual;
+            model.Score = logica.Juego.Score;
+            ViewBag.Score = model.Score;
+            ViewBag.CantidadLetras = logica.ComunicarTamPal();
+            return View("AhorcadoView", model);
+        }
         public ActionResult InsertePalabraAAdivinar(string palabra)
         {
 
@@ -38,7 +50,7 @@ namespace Ahorcado.MVC.Controllers
             model.Score = logica.Juego.Score;
             model.Vidas = logica.Juego.Vidas;
             model.PalabraAAdivinar = logica.Juego.PalabraAAdivinar;
-
+            ViewBag.Score = model.Score;
             return View("AhorcadoView", model);
         }
 
