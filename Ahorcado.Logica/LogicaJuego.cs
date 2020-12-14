@@ -17,7 +17,15 @@ namespace Ahorcado.Logica
             Juego = new Juego();
             Juego.estaVivo = true; 
         }
+        public void PalabraAAdivinar(string v)
+        {
+            Juego.PalabraAAdivinar=v;
+        }
 
+        public List<string> LetrasIngresadas()
+        {
+            return Juego.LetrasIngresadas;
+        }
         public String PalabraIngresada()
         {
             return Juego.PalabraIngresada;
@@ -65,15 +73,22 @@ namespace Ahorcado.Logica
                 throw new ArgumentNullException("Ingrese una letra");
             if (letra.Length != 1)
                 throw new ArgumentOutOfRangeException("La letra debe contener solo un caracter");
-
-            if (this.Juego.LetrasIngresadas.Contains(letra))
+            var letrasIngresadas = this.LetrasIngresadas();
+            if(letrasIngresadas == null || letrasIngresadas.Count() == 0)
             {
-                this.DisminuirScore();
-                this.RestarVidas();
-                this.detectarMuerte();
+                //this.Juego.LetrasIngresadas.Add(letra);
+                letrasIngresadas = new List<string>();
+                letrasIngresadas.Add(letra);
             }
-            this.Juego.LetrasIngresadas.Add(letra);
-
+            else
+            {
+                if (letrasIngresadas.Contains(letra))
+                {
+                    this.DisminuirScore();
+                    this.RestarVidas();
+                    this.detectarMuerte();
+                }
+            }
 
             var cant = GetCantidadAparicionesEnPalabra(letra[0]);
             if (cant > 0)
@@ -86,7 +101,8 @@ namespace Ahorcado.Logica
                 this.DisminuirScore();
                 this.RestarVidas();
                 this.detectarMuerte();
-            }            
+            }
+            this.Juego.LetrasIngresadas = letrasIngresadas;
         }
 
         public void ActualizarEstadoModelo(char letra)
@@ -107,39 +123,34 @@ namespace Ahorcado.Logica
 
         public int GetCantidadAparicionesEnPalabra(char letra)
         {
-
             return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString().ToLower()).Count; 
         }
 
         public String ComunicarTamPal()
         {
-            var frase = "El tamaño de la palabra es " + this.GetTamañoPalabra().ToString();
+            var frase = "Tamaño de palabra: " + this.GetTamañoPalabra().ToString()+" letras";
             return (frase);
         }
 
         public String ComunicarVictoria()
         {
-            Dominio.Juego juego = new Dominio.Juego();
-            var frase = "Felicitaciones" + juego.Usuario + "acertaste la palabra";
+            var frase = "Felicitaciones" + Juego.Usuario + "acertaste la palabra";
             return (frase);
         }
         public String ComunicarDerrota()
         {
-            Dominio.Juego juego = new Dominio.Juego();
-            var frase = "Palabra Erronea, mejor suerte la proxima" + juego.Usuario;
+            var frase = "Palabra Erronea, mejor suerte la proxima" + Juego.Usuario;
             return (frase);
         }
 
         public String ComunicarEstadoPalabra()
         {
-            Dominio.Juego juego = new Dominio.Juego();
-            var frase = juego.PalabraModeloActual;
+            var frase = Juego.PalabraModeloActual;
             return (frase);
         }
         public List<string> LetrasQueNoEstan()
         {
-            Dominio.Juego juego = new Dominio.Juego();
-            return (juego.LetrasIngresadas.Where(c => !juego.PalabraModeloActual.Contains(c)).ToList());
+            return (Juego.LetrasIngresadas.Where(c => !Juego.PalabraModeloActual.Contains(c)).ToList());
         }
         //-----------------Seccion de Scoring --------------------------//
 
@@ -181,8 +192,7 @@ namespace Ahorcado.Logica
 
         public int GetScore()
         {
-            Dominio.Juego juego = new Dominio.Juego();
-            var score = juego.Score;
+            var score = Juego.Score;
             return score;
         }
 
@@ -223,7 +233,7 @@ namespace Ahorcado.Logica
             this.Juego.Vidas = this.Juego.Vidas - 1;
         }
 
-        public void Situacion()
+        public string ObtenerPalabraTXT()
         {
             Dominio.Juego juego = new Juego();
             string usuario = juego.Usuario;
@@ -249,7 +259,6 @@ namespace Ahorcado.Logica
             this.IngresarPalbraEnJuego(getPalabraRandom());
             this.Juego.Score = 0;
             this.Juego.Vidas = 3;
-
         }
 
 

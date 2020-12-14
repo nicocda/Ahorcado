@@ -10,7 +10,6 @@ namespace Ahorcado.Dominio
     public class Juego
     {
 
-
         //private String _PalabraAAdivinar;
 
         //[DisplayName("Palabra a adivinar")]
@@ -95,7 +94,6 @@ namespace Ahorcado.Dominio
         public List<string> LetrasIngresadas = new List<string>();
         public int Vidas { get; set; }
         public bool estaVivo { get; set; }
-
 
 
     }

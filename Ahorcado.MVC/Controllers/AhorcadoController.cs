@@ -9,7 +9,6 @@ namespace Ahorcado.MVC.Controllers
     public class AhorcadoController : Controller
     {
 
-        
 
         public ActionResult AhorcadoView()
         {
@@ -18,7 +17,6 @@ namespace Ahorcado.MVC.Controllers
             ViewBag.letrasIngresadas = "";
             return View(juego);
         }
-
         [HttpGet]
         public ActionResult siguienteRonda(int score)
         {
@@ -71,8 +69,6 @@ namespace Ahorcado.MVC.Controllers
         {
             string letras = "";
 
-
-
             if (letIngresadas == null)
             {
                 letIngresadas = new List<string>();
@@ -103,35 +99,15 @@ namespace Ahorcado.MVC.Controllers
         }
 
 
-        //[HttpPost]
-        //public JsonResult InsertWordToGuess(Models.Ahorcado model)
-        //{
-        //    LJuego = new LogicaJuego();
-        //    LJuego.IngresarPalbraEnJuego(model.WordToGuess);
-        //    //model.ChancesLeft = Juego.ChancesRestantes;
-        //    return Json(model);
-        //}
-
-        //[HttpPost]
-        //public JsonResult TryLetter(Models.Ahorcado model)
-        //{
-        //    LJuego.IngresarLetra(model.LetterTyped);
-        //    model.Win = LJuego.ValidarPalabra();
-        //    //model.ChancesLeft = LJuego.ChancesRestantes;
-        //    model.WrongLetters = string.Empty;
-        //    List<string> letrasErradas = LJuego.LetrasQueNoEstan();
-        //    foreach (var wLetter in letrasErradas)
-        //    {
-        //        model.WrongLetters += wLetter + ",";
-        //    }
-        //    model.GuessingWord = string.Empty;
-        //    string pal=LJuego.PalabraIngresada();
-        //    char[] palabra = pal.ToArray();
-        //    foreach (var rLetter in palabra)
-        //    {
-        //        model.GuessingWord += rLetter + " ";
-        //    }
-        //    model.LetterTyped = string.Empty;
-        //    return Json(model);
+        [HttpGet]
+        public ActionResult _Derrota()
+        {
+            VidaMuerteViewModel vm = new VidaMuerteViewModel();
+            vm.Palabra = logica.Juego.PalabraAAdivinar;
+            vm.Mensaje = "Lo siento, te quedaste sin vidas, mejor suerte la proxima";
+            if(logica.Juego.Score > 0)
+                return View("Error404");
+            return View();
+        }
     }
 }

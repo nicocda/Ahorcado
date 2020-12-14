@@ -9,6 +9,13 @@ namespace Ahorcado.Consola
 {
     public static class ConsolaJuego
     {
+        public static String ComunicarPalabraTXT()
+        {
+            LogicaJuego logica = new LogicaJuego();
+            var pal = logica.ObtenerPalabraTXT();
+            Console.WriteLine(pal);
+            return (pal);
+        }
         public static String ComunicarTamPal()
         {
             LogicaJuego logica = new LogicaJuego();
@@ -38,5 +45,6 @@ namespace Ahorcado.Consola
             Console.WriteLine(pal + logica.LetrasQueNoEstan());
             return (pal);
         }
+        
     }
 }
