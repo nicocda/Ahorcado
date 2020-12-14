@@ -1,0 +1,92 @@
+﻿@model Ahorcado.MVC.Models.AhorcadoClass
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/Ahorcado/RecursosAhorcado.js"></script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ahorcado</title>
+
+    <style>
+
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid #FFFF00;
+            padding: 10px;
+        }
+
+
+        .textAhorcado {
+            font-family: 'Palatino Linotype';
+            font-weight: bold;
+        }
+
+        .botones-ahorcado {
+            background-color: #008CBA;
+            font-size: 16px;
+            border-radius: 12px;
+            transition-duration: 0.4s;
+            border: 2px solid #808080;
+        }
+
+            .botones-ahorcado:hover {
+                background-color: #4CAF50; /* Green */
+                color: white;
+            }
+    </style>
+
+</head>
+<body>
+    <input type="hidden" id="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
+    <input type="hidden" id="vidas" value="@Model.Juego.Vidas" />
+    <input type="hidden" id="scoreTot" value="@Model.Juego.Score" />
+    <div class="container center"> 
+
+        <table class="table-responsive table-bordered" style="background-color:lightgray">
+            <thead>
+                <tr>
+                    <td>
+                        <h2 class="textAhorcado" style="text-align:center;">Ahorcado</h2>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align:center;">
+                        <br />
+                        <label  class="textAhorcado" style="font-size: 6mm;">¡¡CORRECTO!! La palabra a adivinar era: @Model.Juego.PalabraAAdivinar</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">
+                        <br />
+                        <label  class="textAhorcado"  style="font-size:5mm">Score actual: @Model.Juego.Score</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">
+                        @using (Html.BeginForm("siguienteRonda", "Ahorcado", FormMethod.Get))
+                        {
+                            <input type="hidden" id="score" name="score" value="@Model.Juego.Score" />
+                            <br />
+                            <input  class="botones-ahorcado" type="submit" value="Continuar" />
+                            <br />
+                        }
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

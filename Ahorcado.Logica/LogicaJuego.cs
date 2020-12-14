@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Ahorcado.Logica
 {
@@ -228,18 +229,38 @@ namespace Ahorcado.Logica
         }
 
         public void RestarVidas() {
+            getPalabraRandom();
             this.Juego.Vidas = this.Juego.Vidas - 1;
         }
 
         public string ObtenerPalabraTXT()
         {
-            var fileName = @"D:\Agiles\Ahorcado.Logica\Palabras\PalabrasAhorcado.txt";
-            var file = System.IO.File.ReadLines(fileName).ToList();
-            int count = file.Count();
-            Random rnd = new Random();
-            int skip = rnd.Next(0, count);
-            string line = file.Skip(skip).First();
-            return (line);
+            Dominio.Juego juego = new Juego();
+            string usuario = juego.Usuario;
+            int score = GetScore();
         }
+
+        public string getPalabraRandom()
+        {
+            var random = new Random();
+            string filename = "animales.txt";
+            string path = Path.Combine(Environment.CurrentDirectory, @"Palabras\", filename);
+            var logFile = File.ReadAllLines("C:\\Users\\ciber\\source\\repos\\Ahorcado\\Ahorcado.Logica\\Palabras\\animales.txt");
+            var logList = new List<string>(logFile);
+            int index = random.Next(logList.Count);
+            return logList[index];
+            
+        }
+
+        
+
+        public void iniciarJuego()
+        {
+            this.IngresarPalbraEnJuego(getPalabraRandom());
+            this.Juego.Score = 0;
+            this.Juego.Vidas = 3;
+        }
+
+
     }
 }

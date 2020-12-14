@@ -8,60 +8,94 @@ namespace Ahorcado.MVC.Controllers
 {
     public class AhorcadoController : Controller
     {
-        LogicaJuego logica = new LogicaJuego();
+
 
         public ActionResult AhorcadoView()
         {
-            AhorcadoClass model = new AhorcadoClass();
-            return View(model);
+            AhorcadoClass juego = new AhorcadoClass();
+            juego.iniciarJuego();
+            ViewBag.letrasIngresadas = "";
+            return View(juego);
         }
-        public ActionResult ComenzarJuego()
-        {
-            AhorcadoClass model = new AhorcadoClass();
-            logica.IngresarPalbraEnJuego(logica.ObtenerPalabraTXT());
-            model.PalabraAAdivinar = logica.Juego.PalabraAAdivinar;
-            //ViewBag.PalabraAdivinar = model.PalabraAAdivinar;
-            model.PalabraModeloActual = logica.ComunicarEstadoPalabra();
-            ViewBag.PalabraModelo = model.PalabraModeloActual;
-            model.Score = logica.Juego.Score;
-            ViewBag.Score = model.Score;
-            ViewBag.CantidadLetras = logica.ComunicarTamPal();
-            return View("AhorcadoView", model);
-        }
-        public ActionResult InsertePalabraAAdivinar(string palabra)
-        {
-
-            logica.IngresarPalbraEnJuego(palabra);
-            AhorcadoClass model = new AhorcadoClass();
-            model.PalabraModeloActual = logica.Juego.PalabraModeloActual;
-            model.Score = logica.Juego.Score;
-            model.Vidas = logica.Juego.Vidas;
-            model.PalabraAAdivinar = logica.Juego.PalabraAAdivinar;
-
-            return View("AhorcadoView", model);
-        }
-
-        public ActionResult ArriesgarPalabra(FormCollection collection)
-        {
-            string palabra = collection.Get("palabraIngresada");
-            logica.IngresarPalabra(palabra);
-            AhorcadoClass model = new AhorcadoClass();
-            model.PalabraIngresada = logica.Juego.PalabraIngresada;
-            model.Score = logica.Juego.Score;
-            model.Vidas = logica.Juego.Vidas;
-            model.PalabraAAdivinar = logica.Juego.PalabraAAdivinar;
-            ViewBag.Score = model.Score;
-            return View("AhorcadoView", model);
-        }
-
         [HttpGet]
-        public ActionResult _Victoria()
+        public ActionResult siguienteRonda(int score)
         {
-            VidaMuerteViewModel vm = new VidaMuerteViewModel();
-            vm.Palabra = logica.Juego.PalabraAAdivinar;
-            vm.Score = logica.Juego.Score;
-            vm.Mensaje = "Felicitaciones Campepeón!!";
-            return View();
+            AhorcadoClass juego = new AhorcadoClass();
+            juego.iniciarJuego();
+            juego.Juego.Score = score;
+            ViewBag.letrasIngresadas = "";
+            return View("AhorcadoView", juego);
+        }
+
+        [HttpPost]
+        public ActionResult ArriesgarPalabra(string palAAdiv, int vidas, int scoreTot, string palabra, List<string> letIngresadas, string palModAct)
+        {
+            AhorcadoClass model;
+
+            if (letIngresadas != null)
+            {
+                 model = new AhorcadoClass(palAAdiv, vidas, scoreTot, letIngresadas, palModAct);
+            }
+            else
+            {
+                 model = new AhorcadoClass(palAAdiv, vidas, scoreTot, palModAct);
+            }
+
+            string letras = "";
+
+            model.IngresarPalabra(palabra);
+            if (letIngresadas != null)
+            {
+                letras = string.Join(",", model.Juego.LetrasIngresadas.ToArray());
+            }
+
+            if (model.Juego.PalabraAAdivinar != palAAdiv)
+            {
+                model.Juego.PalabraAAdivinar = palAAdiv;
+                return View("VictoriaView", model);
+            }
+            if(model.Juego.estaVivo == false)
+            {
+                return View("DerrotaView", model);
+            } else
+            {
+                ViewBag.letrasIngresadas = letras;
+                return View("AhorcadoView", model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ArriesgarLetra(string palAAdiv, int vidas, int scoreTot, string letra, List<string> letIngresadas, string palModAct)
+        {
+            string letras = "";
+
+            if (letIngresadas == null)
+            {
+                letIngresadas = new List<string>();
+            }
+            AhorcadoClass model = new AhorcadoClass(palAAdiv, vidas, scoreTot, letIngresadas, palModAct);
+            model.IngresarLetra(letra);
+            if (letIngresadas != null)
+            {
+                letras = string.Join(",", model.Juego.LetrasIngresadas.ToArray());
+            }
+            if (palAAdiv == model.Juego.PalabraModeloActual)
+            {
+                model.Juego.PalabraAAdivinar = palAAdiv;
+                return View("VictoriaView", model);
+            }
+            else
+            {
+                if (model.Juego.estaVivo == false)
+                {
+                    return View("DerrotaView", model);
+                }
+                else
+                {
+                    ViewBag.letrasIngresadas = letras;
+                    return View("AhorcadoView", model);
+                }
+            }
         }
 
 
