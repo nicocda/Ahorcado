@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Models\Ahorcado.cs" />
     <Compile Include="Models\AhorcadoClass.cs" />
+    <Compile Include="Models\JuegoClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,9 @@
     <Content Include="Imagenes\1 corazon.png" />
     <Content Include="Imagenes\2 corazones.png" />
     <Content Include="Imagenes\3 corazones.png" />
+    <Content Include="Imagenes\corazon.png" />
+    <Content Include="Imagenes\muerte.png" />
+    <Content Include="Palabras\animales.txt" />
     <Content Include="Scripts\Ahorcado\HangmanVM.js" />
     <Content Include="Scripts\Ahorcado\RecursosAhorcado.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -177,6 +181,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Ahorcado\Index.cshtml" />
     <Content Include="Views\Ahorcado\AhorcadoView.cshtml" />
+    <Content Include="Views\Ahorcado\VictoriaView.cshtml" />
+    <Content Include="Views\Ahorcado\DerrotaView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

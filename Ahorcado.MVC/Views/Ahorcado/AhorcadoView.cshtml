@@ -1,6 +1,7 @@
 ﻿@model Ahorcado.MVC.Models.AhorcadoClass
 @{
     Layout = null;
+    var letraslista = ViewBag.letrasIngresadas;
 }
 
 <!DOCTYPE html>
@@ -10,42 +11,130 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Ahorcado</title>
+    <style>
+
+        .center{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid #FFFF00;
+            padding: 10px;
+        }
+
+
+        .hor-center {
+            left: 50%;
+            padding: 10px;
+        }
+
+        .textAhorcado{
+            font-family: 'Palatino Linotype';
+            font-weight: bold;
+        }
+
+
+        .botones-ahorcado {
+            background-color: #008CBA;
+            font-size: 16px;
+            border-radius: 12px;
+            transition-duration: 0.4s;
+            border: 2px solid #808080;
+        }
+
+        .botones-ahorcado:hover {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+    </style>
 </head>
+
 <body>
-    <input type="hidden" id="palAAdiv" value="@Model.logica.Juego.PalabraAAdivinar" />
-    <input type="hidden" id="vidas" value="@Model.logica.Juego.Vidas" />
-    <input type="hidden" id="scoreTot" value="@Model.logica.Juego.Score" />
-    <div class="container">
+    <input type="hidden" id="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
+    <input type="hidden" id="vidas" value="@Model.Juego.Vidas" />
+    <input type="hidden" id="scoreTot" value="@Model.Juego.Score" />
+    <div class="container center">
         <table class="table-responsive table-bordered" style="background-color:lightgray">
             <thead>
                 <tr>
-                    <td><h2>Ahorcado @Model.logica.Juego.PalabraAAdivinar</h2></td>
+                    <td>
+                        <h2> <label class="textAhorcado">&nbsp;&nbsp; Ahorcado @Model.Juego.PalabraAAdivinar </label></h2>
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            @for (int i = 0; i < Model.Juego.Vidas; i++)
+                            {
+                                <img src="~/Imagenes/corazon.png" width="40" height="55" />
+                            }
+                            &nbsp;
+                        </div>
+                    </td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
 
                     <td class="left">
-                        <label>Arriesgar Palabra </label> <br /> <input type="text" id="palIngre" class="form-control" /> <button type="button" class="form-control" onclick="ingresarPalbraAAdivinar()"> Arriesgar</button> <br /> <br />
-                        <label>Arriesgar Letra  </label> <br /> <input type="text" maxlength="1" id="letIngre" class="form-control" /><button type="button" class="form-control">Arriesgar</button><br />
+                        @*<form action="/Ahorcado/ArriesgarPalabra" method="post">
+                            <label>Arriesgar Palabra </label>
+                            <input type="hidden" id="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
+                            <input type="text" name="palabra" placeholder="palabra" />
+                            <input type="submit" value="Arriesgar" />
+                            <br />
+                        </form>*@
+                        @using (Html.BeginForm("ArriesgarPalabra", "Ahorcado", FormMethod.Post))
+                        {
+                            <label class="textAhorcado">Arriesgar Palabra </label>
+                            <input type="hidden" id="palAAdiv" name="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
+                            <input type="hidden" id="vidas" name="vidas" value="@Model.Juego.Vidas" />
+                            <input type="hidden" id="scoreTot" name="scoreTot" value="@Model.Juego.Score" />
+                            <input type="hidden" id="palModAct" name="palModAct" value="@Model.Juego.PalabraModeloActual" />
+                            for (int i = 0; i < Model.Juego.LetrasIngresadas.Count; i++)
+                            {
+                                <input type="hidden" id="letIngresadas" name="letIngresadas[@i]" value="@Model.Juego.LetrasIngresadas[i]" />
+                            }
+                            <input type="text" name="palabra" placeholder="palabra" style="width: 50px;" />
+                            <input type="submit" value="Arriesgar"  class="botones-ahorcado" />
+                            <br />
+                        }
 
+                        <br />
+
+                        @using (Html.BeginForm("ArriesgarLetra", "Ahorcado", FormMethod.Post))
+                        {
+                            <label class="textAhorcado">Arriesgar Letra </label>
+                            <input type="hidden" id="palAAdiv" name="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
+                            <input type="hidden" id="vidas" name="vidas" value="@Model.Juego.Vidas" />
+                            <input type="hidden" id="scoreTot" name="scoreTot" value="@Model.Juego.Score" />
+                            for (int i = 0; i < Model.Juego.LetrasIngresadas.Count; i++)
+                            {
+                                <input type="hidden" id="letIngresadas" name="letIngresadas[@i]" value="@Model.Juego.LetrasIngresadas[i]" />
+                            }
+                            <input type="hidden" id="palModAct" name="palModAct" value="@Model.Juego.PalabraModeloActual" />
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                            <input type="text" name="letra" placeholder="letra" maxlength="1" style="width: 50px;" />
+                            <input type="submit" value="Arriesgar"  class="botones-ahorcado" />
+                            <br />
+                        }
                     </td>
                     <td class="right">
-                        <img src="~/Imagenes/3 corazones.png" width="150" height="100" />
+                        <label class="textAhorcado" style="font-size:5mm">Score:</label>  <label id="score" class="textAhorcado">&nbsp; @Model.Juego.Score</label> <br />
                         <br />
-                        <label>Score:</label>  <label id="score"> @Model.logica.Juego.Score</label> <br />
-                        <label>Palabra:</label> <label id="palModAct">@Model.logica.Juego.PalabraModeloActual</label> <br />
-                        <label>Letras Ingresadas: </label> <br />
+                        <label class="textAhorcado" style="font-size:5mm">Palabra:</label> <label id="palModAct" class="textAhorcado">&nbsp; @Model.Juego.PalabraModeloActual</label> <br />
+                        <br />
+                        <label class="textAhorcado" style="font-size:5mm">Letras Ingresadas: </label> <label class="textAhorcado">&nbsp; @letraslista</label> <br />
                     </td>
                 </tr>
-                <tr>
-                    <td class="center-block">
-                        <button type="button" class="btn btn-lg btn-primary">Otra partida</button>
-                    </td>
-                </tr>
-
             </tbody>
         </table>
+        <div class="hor-center"  style="background-color:lightgray; text-align:center;">
+            @using (Html.BeginForm("AhorcadoView", "Ahorcado", FormMethod.Get))
+            {
+                <input type="submit" value="Otra partida" class="botones-ahorcado" />
+                <br />
+            }
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
