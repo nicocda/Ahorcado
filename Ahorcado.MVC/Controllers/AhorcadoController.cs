@@ -17,6 +17,8 @@ namespace Ahorcado.MVC.Controllers
             ViewBag.letrasIngresadas = "";
             return View(juego);
         }
+
+
         [HttpGet]
         public ActionResult siguienteRonda(int score)
         {
@@ -99,15 +101,15 @@ namespace Ahorcado.MVC.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult _Derrota()
-        {
-            VidaMuerteViewModel vm = new VidaMuerteViewModel();
-            vm.Palabra = logica.Juego.PalabraAAdivinar;
-            vm.Mensaje = "Lo siento, te quedaste sin vidas, mejor suerte la proxima";
-            if(logica.Juego.Score > 0)
-                return View("Error404");
-            return View();
-        }
+        //[HttpGet]
+        //public ActionResult _Derrota()
+        //{
+        //    VidaMuerteViewModel vm = new VidaMuerteViewModel();
+        //    vm.Palabra = logica.Juego.PalabraAAdivinar;
+        //    vm.Mensaje = "Lo siento, te quedaste sin vidas, mejor suerte la proxima";
+        //    if(logica.Juego.Score > 0)
+        //        return View("Error404");
+        //    return View();
+        //}
     }
 }

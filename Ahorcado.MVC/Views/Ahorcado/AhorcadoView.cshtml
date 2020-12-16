@@ -1,5 +1,4 @@
-
-﻿@model Ahorcado.MVC.Models.AhorcadoClass
+@model AhorcadoClass
 @{
     Layout = null;
     var letraslista = ViewBag.letrasIngresadas;
@@ -56,17 +55,17 @@
     <input type="hidden" id="vidas" value="@Model.Juego.Vidas" />
     <input type="hidden" id="scoreTot" value="@Model.Juego.Score" />
     <div class="container center">
-        <table class="table-responsive table-bordered" style="background-color:lightgray">
+        <table class="table-responsive table-bordered" style="background-color:lightgray" width="600" height="200">
             <thead>
                 <tr>
                     <td>
                         <h2> <label class="textAhorcado">&nbsp;&nbsp; Ahorcado @Model.Juego.PalabraAAdivinar </label></h2>
                     </td>
-                    <td>
-                        <div style="float: right;">
+                    <td style="width: 300px; text-align:center;">
+                        <div>
                             @for (int i = 0; i < Model.Juego.Vidas; i++)
                             {
-                                <img src="~/Imagenes/corazon.png" width="40" height="55" />
+                                <img name="corazon" src="~/Imagenes/corazon.png" width="40" height="55" />
                             }
                             &nbsp;
                         </div>
@@ -86,16 +85,16 @@
                         @using (Html.BeginForm("ArriesgarPalabra", "Ahorcado", FormMethod.Post))
                         {
                             <label class="textAhorcado">Arriesgar Palabra </label>
-                            <input type="hidden" id="palAAdiv" name="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
-                            <input type="hidden" id="vidas" name="vidas" value="@Model.Juego.Vidas" />
-                            <input type="hidden" id="scoreTot" name="scoreTot" value="@Model.Juego.Score" />
-                            <input type="hidden" id="palModAct" name="palModAct" value="@Model.Juego.PalabraModeloActual" />
+                            <input type="hidden" id="palAAdivP" name="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
+                            <input type="hidden" id="vidasP" name="vidas" value="@Model.Juego.Vidas" />
+                            <input type="hidden" id="scoreTotP" name="scoreTot" value="@Model.Juego.Score" />
+                            <input type="hidden" id="palModActP" name="palModAct" value="@Model.Juego.PalabraModeloActual" />
                             for (int i = 0; i < Model.Juego.LetrasIngresadas.Count; i++)
                             {
-                                <input type="hidden" id="letIngresadas" name="letIngresadas[@i]" value="@Model.Juego.LetrasIngresadas[i]" />
+                                <input type="hidden" id="letIngresadasP" name="letIngresadas[@i]" value="@Model.Juego.LetrasIngresadas[i]" />
                             }
-                            <input type="text" name="palabra" placeholder="palabra" style="width: 50px;" />
-                            <input type="submit" value="Arriesgar"  class="botones-ahorcado" />
+                            <input type="text" id="palIngresada" name="palabra" placeholder="palabra" style="width: 50px;" />
+                            <input type="submit" id="btnIngPal" value="Arriesgar"  class="botones-ahorcado" />
                             <br />
                         }
 
@@ -104,26 +103,26 @@
                         @using (Html.BeginForm("ArriesgarLetra", "Ahorcado", FormMethod.Post))
                         {
                             <label class="textAhorcado">Arriesgar Letra </label>
-                            <input type="hidden" id="palAAdiv" name="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
-                            <input type="hidden" id="vidas" name="vidas" value="@Model.Juego.Vidas" />
-                            <input type="hidden" id="scoreTot" name="scoreTot" value="@Model.Juego.Score" />
+                            <input type="hidden" id="palAAdivL" name="palAAdiv" value="@Model.Juego.PalabraAAdivinar" />
+                            <input type="hidden" id="vidasL" name="vidas" value="@Model.Juego.Vidas" />
+                            <input type="hidden" id="scoreTotL" name="scoreTot" value="@Model.Juego.Score" />
                             for (int i = 0; i < Model.Juego.LetrasIngresadas.Count; i++)
                             {
-                                <input type="hidden" id="letIngresadas" name="letIngresadas[@i]" value="@Model.Juego.LetrasIngresadas[i]" />
+                                <input type="hidden" id="letIngresadasL" name="letIngresadas[@i]" value="@Model.Juego.LetrasIngresadas[i]" />
                             }
-                            <input type="hidden" id="palModAct" name="palModAct" value="@Model.Juego.PalabraModeloActual" />
+                            <input type="hidden" id="palModActL" name="palModAct" value="@Model.Juego.PalabraModeloActual" />
                             <span>&nbsp;&nbsp;&nbsp;</span>
                             <input type="text" name="letra" placeholder="letra" maxlength="1" style="width: 50px;" />
                             <input type="submit" value="Arriesgar"  class="botones-ahorcado" />
                             <br />
                         }
                     </td>
-                    <td class="right">
-                        <label class="textAhorcado" style="font-size:5mm">Score:</label>  <label id="score" class="textAhorcado">&nbsp; @Model.Juego.Score</label> <br />
+                    <td class="right" style="width: 300px;">
+                        <label class="textAhorcado"  style="font-size:5mm">Score:</label>  <label id="score" class="textAhorcado">&nbsp; @Model.Juego.Score</label> <br />
                         <br />
-                        <label class="textAhorcado" style="font-size:5mm">Palabra:</label> <label id="palModAct" class="textAhorcado">&nbsp; @Model.Juego.PalabraModeloActual</label> <br />
+                        <label class="textAhorcado" id="labelPalabra" style="font-size:5mm">Palabra:</label> <label id="palModAct" class="textAhorcado">&nbsp; @Model.Juego.PalabraModeloActual</label> <br />
                         <br />
-                        <label class="textAhorcado" style="font-size:5mm">Letras Ingresadas: </label> <label class="textAhorcado">&nbsp; @letraslista</label> <br />
+                        <label class="textAhorcado" style="font-size:5mm">Letras Ingresadas: </label> <label id="listaLetra"  class="textAhorcado">&nbsp; @letraslista</label> <br />
                     </td>
                 </tr>
             </tbody>
@@ -131,7 +130,7 @@
         <div class="hor-center"  style="background-color:lightgray; text-align:center;">
             @using (Html.BeginForm("AhorcadoView", "Ahorcado", FormMethod.Get))
             {
-                <input type="submit" value="Otra partida" class="botones-ahorcado" />
+                <input type="submit" id="otraPartida" value="Otra partida" class="botones-ahorcado" />
                 <br />
             }
         </div>

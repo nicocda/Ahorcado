@@ -233,12 +233,12 @@ namespace Ahorcado.Logica
             this.Juego.Vidas = this.Juego.Vidas - 1;
         }
 
-        public string ObtenerPalabraTXT()
-        {
-            Dominio.Juego juego = new Juego();
-            string usuario = juego.Usuario;
-            int score = GetScore();
-        }
+        //public string ObtenerPalabraTXT()
+        //{
+        //    Dominio.Juego juego = new Juego();
+        //    string usuario = juego.Usuario;
+        //    int score = GetScore();
+        //}
 
         public string getPalabraRandom()
         {
