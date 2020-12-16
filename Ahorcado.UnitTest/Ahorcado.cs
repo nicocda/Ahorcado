@@ -229,15 +229,15 @@ namespace Ahorcado.UnitTest
             var pal = logica.LetrasQueNoEstan();
             Assert.AreEqual(esperado, pal);
         }
-        [TestMethod]
-        public void MostrarConsolaPorPalabra()
-        {
-            var logica = new LogicaJuego();
-            logica.IngresarPalbraEnJuego("12345678");
-            var esperado = "El tamaño de la palabra es 8";
-            var pal = logica.ComunicarTamPal();
-            Assert.AreEqual(esperado, pal);
-        }
+        //[TestMethod]
+        //public void MostrarConsolaPorPalabra()
+        //{
+        //    var logica = new LogicaJuego();
+        //    logica.IngresarPalbraEnJuego("12345678");
+        //    var esperado = "El tamaño de la palabra es 8";
+        //    var pal = logica.ComunicarTamPal();
+        //    Assert.AreEqual(esperado, pal);
+        //}
 
         [TestMethod]
         public void IngresarPalabra()
