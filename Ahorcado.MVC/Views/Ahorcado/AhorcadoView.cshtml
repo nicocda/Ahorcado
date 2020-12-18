@@ -112,17 +112,17 @@
                             }
                             <input type="hidden" id="palModActL" name="palModAct" value="@Model.Juego.PalabraModeloActual" />
                             <span>&nbsp;&nbsp;&nbsp;</span>
-                            <input type="text" name="letra" placeholder="letra" maxlength="1" style="width: 50px;" />
-                            <input type="submit" value="Arriesgar"  class="botones-ahorcado" />
+                            <input type="text" id="letraIngresada" name="letra" placeholder="letra" maxlength="1" style="width: 50px;" />
+                            <input type="submit"  id="btnIngLet" value="Arriesgar"  class="botones-ahorcado" />
                             <br />
                         }
                     </td>
                     <td class="right" style="width: 300px;">
-                        <label class="textAhorcado"  style="font-size:5mm">Score:</label>  <label id="score" class="textAhorcado">&nbsp; @Model.Juego.Score</label> <br />
+                        <label class="textAhorcado"  style="font-size:5mm">Score:</label>  <label id="score" class="textAhorcado">&nbsp;@Model.Juego.Score</label> <br />
                         <br />
-                        <label class="textAhorcado" id="labelPalabra" style="font-size:5mm">Palabra:</label> <label id="palModAct" class="textAhorcado">&nbsp; @Model.Juego.PalabraModeloActual</label> <br />
+                        <label class="textAhorcado" id="labelPalabra" style="font-size:5mm">Palabra:</label> <label id="palModAct" class="textAhorcado">&nbsp;@Model.Juego.PalabraModeloActual</label> <br />
                         <br />
-                        <label class="textAhorcado" style="font-size:5mm">Letras Ingresadas: </label> <label id="listaLetra"  class="textAhorcado">&nbsp; @letraslista</label> <br />
+                        <label class="textAhorcado" style="font-size:5mm">Letras Ingresadas: </label> <label id="listaLetra"  class="textAhorcado">&nbsp;@letraslista</label> <br />
                     </td>
                 </tr>
             </tbody>
