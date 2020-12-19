@@ -28,8 +28,9 @@ namespace Ahorcado.SpecFlowATDD.Steps
         IWebDriver driver;
         String baseURL = "https://localhost:44348/";
         public  AhorcadoClass _Ahorcado;
-        public static int score = 0;
+        public static int scorePrin = 0;
         public static int vidas = 0;
+        public static String PalEnJuego = "";
 
         //protected virtual string GetApplicationPath(string applicationName)
         //{
@@ -109,7 +110,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         public void WhenLaPrimerLetraDeLaPalabraEsIngresada()
         {
             driver.Navigate().GoToUrl(baseURL);
-            score = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
+            scorePrin = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
             var palEnJuegoC = driver.FindElement(By.Id("palAAdivL"));
             var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
             var txtLetra = driver.FindElement(By.Id("letraIngresada"));
@@ -128,7 +129,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         public void ThenSeDeberiaAumentarElScore()
         {
            var scoreact = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
-            scoreact.Should().BeGreaterThan(score);
+            scoreact.Should().BeGreaterThan(scorePrin);
         }
 
 
@@ -153,7 +154,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         public void WhenLaUnaLetraErroneaEsIngresada()
         {
             driver.Navigate().GoToUrl(baseURL);
-            score = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
+            scorePrin = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
             var palEnJuegoC = driver.FindElement(By.Id("palAAdivL"));
             var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
             var letras = "abcdefghijklmnñopqrstuvwxyz";
@@ -169,18 +170,103 @@ namespace Ahorcado.SpecFlowATDD.Steps
             for (int i = 0; i < 5; i++)
             {
                 var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
-                var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString().Reverse().ToString();
+                var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString() + "aaaa";
                 var txtPalabra = driver.FindElement(By.Id("palIngresada"));
                 txtPalabra.SendKeys(palEnJuegoVal);
                 WhenElBotonArriesgarEsApretado();
             }
         }
 
-        [Then(@"el contador de vidas deveria ser cero")]
-        public void ThenElContadorDeVidasDeveriaSer()
+        [Then(@"el contador de vidas deberia ser cero")]
+        public void ThenElContadorDeVidasDeberiaSer()
         {
             var vidasAct = int.Parse(driver.FindElement(By.Id("vidas")).GetAttribute("value").ToString());
             vidasAct.Should().Be(0);
+        }
+
+
+        [When(@"se aprieta el boton de otra partida")]
+        public void WhenSeAprietaElBotonDeOtraPartida()
+        {
+            driver.Navigate().GoToUrl(baseURL);
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            PalEnJuego = palEnJuegoVal;
+            var btnOtraPartida = driver.FindElement(By.Id("otraPartida"));
+            btnOtraPartida.SendKeys(Keys.Enter);
+        }
+
+
+        [Then(@"el score las vidas y la palabra en juego deben resetearse")]
+        public void ThenElScoreLasVidasYLaPalabraEnJuegoDebenResetearse()
+        {
+            var score = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            var vidasAct = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            bool resul = false;
+            if(score == 0 && palEnJuegoVal != PalEnJuego && vidasAct == vidas)
+            {
+                resul = true;
+            }
+            resul.Should().BeTrue();
+        }
+
+        [Given(@"estamos en la pagina de derrota")]
+        public void GivenEstamosEnLaPaginaDeDerrota()
+        {
+            driver.Navigate().GoToUrl(baseURL);
+            vidas = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            PalEnJuego = palEnJuegoVal;
+            WhenSeIngresaLaPalabraErroneaCincoVeces();
+        }
+
+        [When(@"se aprieta el boton de siguiente partida")]
+        public void WhenSeAprietaElBotonDeSiguientePartida()
+        {
+            var btnOtraPartida = driver.FindElement(By.Id("botonSigPartida"));
+            btnOtraPartida.SendKeys(Keys.Enter);
+        }
+
+        [Given(@"estamos en la pagina victoria despues de acertar la palabra a adivinar")]
+        public void GivenEstamosEnLaPaginaVictoriaDespuesDeAcertarLaPalabraAAdivinar()
+        {
+            driver.Navigate().GoToUrl(baseURL);
+            vidas = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            PalEnJuego = palEnJuegoVal;
+            var txtPalabra = driver.FindElement(By.Id("palIngresada"));
+            txtPalabra.SendKeys(palEnJuegoVal);
+            var btnInsertWord = driver.FindElement(By.Id("btnIngPal"));
+            btnInsertWord.SendKeys(Keys.Enter);
+            scorePrin = int.Parse(driver.FindElement(By.Id("scoreTot")).GetAttribute("value").ToString().ToLower());
+        }
+
+
+        [When(@"se aprieta el boton de continuar")]
+        public void WhenSeAprietaElBotonDeContinuar()
+        {
+            var btnContinuar = driver.FindElement(By.Id("botonContinuar"));
+            btnContinuar.SendKeys(Keys.Enter);
+        }
+
+
+        [Then(@"el score se mantiene y las vidas y la palabra en juego deben resetearse")]
+        public void ThenElScoreSeMantieneYLasVidasYLaPalabraEnJuegoDebenResetearse()
+        {
+            var score = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            var vidasAct = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            bool resul = false;
+            if (score == scorePrin && palEnJuegoVal != PalEnJuego && vidasAct == vidas)
+            {
+                resul = true;
+            }
+            resul.Should().BeTrue();
         }
 
 
