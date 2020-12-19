@@ -34,4 +34,22 @@ Scenario: Errar Letra ingresada
 Scenario: morir
 	Given la palabra en juego esta definida
 	When se ingresa la palabra erronea cinco veces
-	Then el contador de vidas deveria ser cero
+	Then el contador de vidas deberia ser cero
+
+
+Scenario: apretar boton otra partida
+	Given la palabra en juego esta definida
+	When se aprieta el boton de otra partida
+	Then el score las vidas y la palabra en juego deben resetearse
+
+
+Scenario: apretar boton otra partida en pagina derrota
+	Given estamos en la pagina de derrota
+	When se aprieta el boton de siguiente partida
+	Then el score las vidas y la palabra en juego deben resetearse
+
+
+Scenario: apretar boton otra continuar en pagina victoria
+	Given estamos en la pagina victoria despues de acertar la palabra a adivinar
+	When se aprieta el boton de continuar
+	Then el score se mantiene y las vidas y la palabra en juego deben resetearse
