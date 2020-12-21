@@ -53,3 +53,31 @@ Scenario: apretar boton otra continuar en pagina victoria
 	Given estamos en la pagina victoria despues de acertar la palabra a adivinar
 	When se aprieta el boton de continuar
 	Then el score se mantiene y las vidas y la palabra en juego deben resetearse
+
+
+Scenario: mostrar lista de 2 letras 
+  Given la palabra en juego esta definida
+  	When se ingresa la letra a
+	And el boton arriesgar letra es apretado
+	And se ingresa la letra b
+	And el boton arriesgar letra es apretado
+	Then la lista de letras ingresadas debe mostrar que se ingresaron las letras a y b
+
+Scenario:  bajar el score
+	Given la palabra en juego esta definida
+	When la primer letra de la palabra es ingresada
+	And el boton arriesgar letra es apretado
+	When la una letra erronea es ingresada
+	And el boton arriesgar letra es apretado
+	Then el score deberia terminar en 50
+
+Scenario:  palabra oculta
+	Given la palabra en juego esta definida
+	When la primer letra de la palabra es ingresada
+	And el boton arriesgar letra es apretado
+	Then la palabra oculta deberia mostrar la letra adivinada
+
+Scenario:  Acertar Todas las letras de la palabra
+	Given la palabra en juego esta definida
+	When se ingresan todas las letras de la palabra 
+	Then se deberia mostrar un mensaje de victoria
