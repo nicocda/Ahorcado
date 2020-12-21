@@ -9,6 +9,8 @@ using OpenQA.Selenium.Chrome;
 using System.Diagnostics;
 using System.IO;
 using Ahorcado.MVC.Models;
+using System.Text.RegularExpressions;
+
 namespace Ahorcado.SpecFlowATDD.Steps
 {
 
@@ -27,7 +29,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
 
         IWebDriver driver;
         String baseURL = "https://localhost:44348/";
-        public  AhorcadoClass _Ahorcado;
+        public AhorcadoClass _Ahorcado;
         public static int scorePrin = 0;
         public static int vidas = 0;
         public static String PalEnJuego = "";
@@ -74,12 +76,37 @@ namespace Ahorcado.SpecFlowATDD.Steps
             driver.Url = baseURL;
         }
 
+        [Given(@"estamos en la pagina victoria despues de acertar la palabra a adivinar")]
+        public void GivenEstamosEnLaPaginaVictoriaDespuesDeAcertarLaPalabraAAdivinar()
+        {
+            driver.Navigate().GoToUrl(baseURL);
+            vidas = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            PalEnJuego = palEnJuegoVal;
+            var txtPalabra = driver.FindElement(By.Id("palIngresada"));
+            txtPalabra.SendKeys(palEnJuegoVal);
+            var btnInsertWord = driver.FindElement(By.Id("btnIngPal"));
+            btnInsertWord.SendKeys(Keys.Enter);
+            scorePrin = int.Parse(driver.FindElement(By.Id("scoreTot")).GetAttribute("value").ToString().ToLower());
+        }
 
+
+        [Given(@"estamos en la pagina de derrota")]
+        public void GivenEstamosEnLaPaginaDeDerrota()
+        {
+            driver.Navigate().GoToUrl(baseURL);
+            vidas = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            PalEnJuego = palEnJuegoVal;
+            WhenSeIngresaLaPalabraErroneaCincoVeces();
+        }
 
         [When(@"la palabra en juego es agragada en el campo de palabra")]
         public void WhenLaPalabraEnJuegoEsAgragadaEnElCampoDePalabra()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            //driver.Navigate().GoToUrl(baseURL);
             vidas = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
             var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
             var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
@@ -97,19 +124,12 @@ namespace Ahorcado.SpecFlowATDD.Steps
             btnInsertWord.SendKeys(Keys.Enter);
         }
 
-        [Then(@"se deberia motrar un mensaje de victoria")]
-        public void ThenSeDeberiaMotrarUnMensajeDeVictoria()
-        {
-            var menVictoria = driver.FindElement(By.Id("labelVictoria"));
-            var MenvictoriaVal = menVictoria.GetAttribute("innerHTML").ToString().ToLower();
-            var vict = MenvictoriaVal.Contains("correcto");
-            vict.Should().BeTrue();
-        }
+
 
         [When(@"la primer letra de la palabra es ingresada")]
         public void WhenLaPrimerLetraDeLaPalabraEsIngresada()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            //driver.Navigate().GoToUrl(baseURL);
             scorePrin = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
             var palEnJuegoC = driver.FindElement(By.Id("palAAdivL"));
             var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
@@ -125,35 +145,24 @@ namespace Ahorcado.SpecFlowATDD.Steps
         }
 
 
-        [Then(@"se deberia aumentar el score")]
-        public void ThenSeDeberiaAumentarElScore()
-        {
-           var scoreact = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
-            scoreact.Should().BeGreaterThan(scorePrin);
-        }
 
 
         [When(@"la palabra distinta a la en juego es agragada en el campo de palabra")]
         public void WhenLaPalabraDistintaALaEnJuegoEsAgragadaEnElCampoDePalabra()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            //driver.Navigate().GoToUrl(baseURL);
             var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
-            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString().Reverse().ToString();
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString() + "aaaa";
             var txtPalabra = driver.FindElement(By.Id("palIngresada"));
             txtPalabra.SendKeys(palEnJuegoVal);
         }
 
-        [Then(@"se deberia bajar el contador de vidas")]
-        public void ThenSeDeberiaBajarElContadorDeVidas()
-        {
-            var vidasAct = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
-            vidasAct.Should().BeLessThan(vidas);
-        }
+
 
         [When(@"la una letra erronea es ingresada")]
         public void WhenLaUnaLetraErroneaEsIngresada()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            //driver.Navigate().GoToUrl(baseURL);
             scorePrin = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
             var palEnJuegoC = driver.FindElement(By.Id("palAAdivL"));
             var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
@@ -166,7 +175,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         [When(@"se ingresa la palabra erronea cinco veces")]
         public void WhenSeIngresaLaPalabraErroneaCincoVeces()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            //driver.Navigate().GoToUrl(baseURL);
             for (int i = 0; i < 5; i++)
             {
                 var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
@@ -177,12 +186,6 @@ namespace Ahorcado.SpecFlowATDD.Steps
             }
         }
 
-        [Then(@"el contador de vidas deberia ser cero")]
-        public void ThenElContadorDeVidasDeberiaSer()
-        {
-            var vidasAct = int.Parse(driver.FindElement(By.Id("vidas")).GetAttribute("value").ToString());
-            vidasAct.Should().Be(0);
-        }
 
 
         [When(@"se aprieta el boton de otra partida")]
@@ -197,31 +200,9 @@ namespace Ahorcado.SpecFlowATDD.Steps
         }
 
 
-        [Then(@"el score las vidas y la palabra en juego deben resetearse")]
-        public void ThenElScoreLasVidasYLaPalabraEnJuegoDebenResetearse()
-        {
-            var score = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
-            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
-            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
-            var vidasAct = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
-            bool resul = false;
-            if(score == 0 && palEnJuegoVal != PalEnJuego && vidasAct == vidas)
-            {
-                resul = true;
-            }
-            resul.Should().BeTrue();
-        }
 
-        [Given(@"estamos en la pagina de derrota")]
-        public void GivenEstamosEnLaPaginaDeDerrota()
-        {
-            driver.Navigate().GoToUrl(baseURL);
-            vidas = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
-            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
-            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
-            PalEnJuego = palEnJuegoVal;
-            WhenSeIngresaLaPalabraErroneaCincoVeces();
-        }
+
+
 
         [When(@"se aprieta el boton de siguiente partida")]
         public void WhenSeAprietaElBotonDeSiguientePartida()
@@ -230,20 +211,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
             btnOtraPartida.SendKeys(Keys.Enter);
         }
 
-        [Given(@"estamos en la pagina victoria despues de acertar la palabra a adivinar")]
-        public void GivenEstamosEnLaPaginaVictoriaDespuesDeAcertarLaPalabraAAdivinar()
-        {
-            driver.Navigate().GoToUrl(baseURL);
-            vidas = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
-            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
-            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
-            PalEnJuego = palEnJuegoVal;
-            var txtPalabra = driver.FindElement(By.Id("palIngresada"));
-            txtPalabra.SendKeys(palEnJuegoVal);
-            var btnInsertWord = driver.FindElement(By.Id("btnIngPal"));
-            btnInsertWord.SendKeys(Keys.Enter);
-            scorePrin = int.Parse(driver.FindElement(By.Id("scoreTot")).GetAttribute("value").ToString().ToLower());
-        }
+
 
 
         [When(@"se aprieta el boton de continuar")]
@@ -253,6 +221,63 @@ namespace Ahorcado.SpecFlowATDD.Steps
             btnContinuar.SendKeys(Keys.Enter);
         }
 
+
+
+        [When(@"se ingresa la letra a")]
+        public void WhenSeIngresaLaLetraA()
+        {
+            var txtLetra = driver.FindElement(By.Id("letraIngresada"));
+            txtLetra.SendKeys("a");
+        }
+
+        [When(@"se ingresa la letra b")]
+        public void WhenSeIngresaLaLetraB()
+        {
+            var txtLetra = driver.FindElement(By.Id("letraIngresada"));
+            txtLetra.SendKeys("b");
+        }
+
+
+        [When(@"se ingresan todas las letras de la palabra")]
+        public void WhenSeIngresanTodasLasLetrasDeLaPalabra()
+        {
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivL"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            List<String> letras = new List<string>();
+            foreach (var item in palEnJuegoVal)
+            {
+                if (!(letras.Contains(item.ToString())))
+                {
+                    letras.Add(item.ToString());
+                }
+            }
+            foreach (var Ilet in letras)
+            {
+                var txtLetra = driver.FindElement(By.Id("letraIngresada"));
+                txtLetra.SendKeys(Ilet);
+                var btnInsertLetra = driver.FindElement(By.Id("btnIngLet"));
+                btnInsertLetra.SendKeys(Keys.Enter);
+            }
+        }
+
+
+
+
+        [Then(@"se deberia motrar un mensaje de victoria")]
+        public void ThenSeDeberiaMotrarUnMensajeDeVictoria()
+        {
+            var menVictoria = driver.FindElement(By.Id("labelVictoria"));
+            var MenvictoriaVal = menVictoria.GetAttribute("innerHTML").ToString().ToLower();
+            var vict = MenvictoriaVal.Contains("correcto");
+            vict.Should().BeTrue();
+        }
+
+        [Then(@"se deberia aumentar el score")]
+        public void ThenSeDeberiaAumentarElScore()
+        {
+            var scoreact = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
+            scoreact.Should().BeGreaterThan(scorePrin);
+        }
 
         [Then(@"el score se mantiene y las vidas y la palabra en juego deben resetearse")]
         public void ThenElScoreSeMantieneYLasVidasYLaPalabraEnJuegoDebenResetearse()
@@ -269,6 +294,72 @@ namespace Ahorcado.SpecFlowATDD.Steps
             resul.Should().BeTrue();
         }
 
+
+        [Then(@"la lista de letras ingresadas debe mostrar que se ingresaron las letras a y b")]
+        public void ThenLaListaDeLetrasIngresadasDebeMostrarQueSeIngresaronLasLetrasAYB()
+        {
+            var lista = driver.FindElement(By.Id("listaLetra")).GetAttribute("innerHTML").ToString().ToLower();
+            var tien = lista.Contains("a,b");
+            tien.Should().BeTrue();
+
+        }
+
+
+        [Then(@"el score las vidas y la palabra en juego deben resetearse")]
+        public void ThenElScoreLasVidasYLaPalabraEnJuegoDebenResetearse()
+        {
+            var score = int.Parse(driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower());
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP"));
+            var palEnJuegoVal = palEnJuegoC.GetAttribute("value").ToString();
+            var vidasAct = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            bool resul = false;
+            if (score == 0 && palEnJuegoVal != PalEnJuego && vidasAct == vidas)
+            {
+                resul = true;
+            }
+            resul.Should().BeTrue();
+        }
+
+        [Then(@"se deberia bajar el contador de vidas")]
+        public void ThenSeDeberiaBajarElContadorDeVidas()
+        {
+            var vidasAct = int.Parse(driver.FindElement(By.Id("vidasP")).GetAttribute("value").ToString());
+            vidasAct.Should().BeLessThan(vidas);
+        }
+
+        [Then(@"el contador de vidas deberia ser cero")]
+        public void ThenElContadorDeVidasDeberiaSer()
+        {
+            var vidasAct = int.Parse(driver.FindElement(By.Id("vidas")).GetAttribute("value").ToString());
+            vidasAct.Should().Be(0);
+        }
+
+
+        [Then(@"el score deberia terminar en (.*)")]
+        public void ThenElScoreDeberiaTerminarEn(int p0)
+        {
+            var score = driver.FindElement(By.Id("scoreTotL")).GetAttribute("value").ToString().ToLower();
+            var term = score.EndsWith(p0.ToString());
+            term.Should().BeTrue();
+        }
+
+        [Then(@"la palabra oculta deberia mostrar la letra adivinada")]
+        public void ThenLaPalabraOcultaDeberiaMostrarLaLetraAdivinada()
+        {
+            var palEnJuegoC = driver.FindElement(By.Id("palAAdivP")).GetAttribute("value").ToString();
+            var palModAct = driver.FindElement(By.Id("palModAct")).GetAttribute("innerHTML").ToString();
+            palModAct = Regex.Replace(palModAct, @"<[^>]+>|&nbsp;", "").Trim();
+            var bole = (palModAct[0] == palModAct[0]);
+            bole.Should().BeTrue();
+        }
+
+        [Then(@"se deberia mostrar un mensaje de victoria")]
+        public void ThenSeDeberiaMostrarUnMensajeDeVictoria()
+        {
+            var mensajevic = driver.FindElement(By.Id("labelVictoria")).GetAttribute("innerHTML").ToString().ToLower() ;
+            var tien = mensajevic.Contains("correcto");
+            tien.Should().BeTrue();
+        }
 
 
         [AfterScenario]
