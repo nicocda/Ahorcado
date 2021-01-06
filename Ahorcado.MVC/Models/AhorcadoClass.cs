@@ -269,7 +269,7 @@ namespace Ahorcado.MVC.Models
         //    int score = GetScore();
         //}
 
-        public string getPalabraRandom()
+        /*public string getPalabraRandom()
         {
             var random = new Random();
             string filename = "animales.txt";
@@ -279,7 +279,7 @@ namespace Ahorcado.MVC.Models
             int index = random.Next(logList.Count);
             return logList[index];
 
-        }
+        }*/
 
 
 
@@ -293,7 +293,18 @@ namespace Ahorcado.MVC.Models
         }
 
 
-
+        public string getPalabraRandom()
+        {
+            var random = new Random();
+            List<string> listOfAnimals = new List<string>()
+            {
+                "oso","gato","hormiga","mono","zorro","leopardo","cangrejo","aguila","ballena","castor",
+                "perro","murcielago","abeja","castor","vaca","leon","tigre","lagarto","oveja","cerdo",
+                "conejo"
+            };
+            int index = random.Next(listOfAnimals.Count);
+            return listOfAnimals[index];
+        }
 
     }
 }
