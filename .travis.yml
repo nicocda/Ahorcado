@@ -1,9 +1,0 @@
-language: csharp
-solution: Ahorcado.sln
-mono: latest
-dotnet: 4.7.2
-dist : xenial
-script:
-  - dotnet restore
-  - msbuild
-  - dotnet test Ahorcado.UnitTest/Ahorcado.UnitTest.csproj

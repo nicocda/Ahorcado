@@ -145,7 +145,6 @@
     <Content Include="Imagenes\3 corazones.png" />
     <Content Include="Imagenes\corazon.png" />
     <Content Include="Imagenes\muerte.png" />
-    <Content Include="Palabras\animales.txt" />
     <Content Include="Scripts\Ahorcado\HangmanVM.js" />
     <Content Include="Scripts\Ahorcado\RecursosAhorcado.js" />
     <Content Include="Scripts\bootstrap.js" />

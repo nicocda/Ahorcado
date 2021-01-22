@@ -11,11 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.Logica", "Ahorcado
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.Consola", "Ahorcado.Consola\Ahorcado.Consola.csproj", "{B21139AA-6A70-413F-A7BC-D23703CC0FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.UIAutomation", "Ahorcado.UIAutomation\Ahorcado.UIAutomation.csproj", "{41F98BC3-F621-462A-830A-911BE824385C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.MVC", "Ahorcado.MVC\Ahorcado.MVC.csproj", "{DC9B00FA-6095-4DD0-BFBE-07696C8AD895}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorcado.SpecFlowATDD", "Ahorcado.SpecFlowATDD\Ahorcado.SpecFlowATDD.csproj", "{80B2ECF0-1A35-4785-8415-281CE6463AD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ahorcado.SpecFlowATDD", "Ahorcado.SpecFlowATDD\Ahorcado.SpecFlowATDD.csproj", "{80B2ECF0-1A35-4785-8415-281CE6463AD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{B21139AA-6A70-413F-A7BC-D23703CC0FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B21139AA-6A70-413F-A7BC-D23703CC0FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B21139AA-6A70-413F-A7BC-D23703CC0FFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41F98BC3-F621-462A-830A-911BE824385C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41F98BC3-F621-462A-830A-911BE824385C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41F98BC3-F621-462A-830A-911BE824385C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41F98BC3-F621-462A-830A-911BE824385C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC9B00FA-6095-4DD0-BFBE-07696C8AD895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC9B00FA-6095-4DD0-BFBE-07696C8AD895}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC9B00FA-6095-4DD0-BFBE-07696C8AD895}.Release|Any CPU.ActiveCfg = Release|Any CPU
