@@ -13,10 +13,6 @@ using System.Text.RegularExpressions;
 
 namespace Ahorcado.SpecFlowATDD.Steps
 {
-
-
-
-
     [Binding]
     public class AhorcadoStepDefinition
     {
@@ -28,7 +24,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         //const int _iisPort = 9515;
 
         IWebDriver driver;
-        String baseURL = "https://localhost:44348/";
+        String baseURL;
         public AhorcadoClass _Ahorcado;
         public static int scorePrin = 0;
         public static int vidas = 0;
@@ -60,16 +56,15 @@ namespace Ahorcado.SpecFlowATDD.Steps
         public void TestInitialize()
         {
             //StartIIS();
-            var path = "D:\\Agiles\\Ahorcado.SpecFlowATDD\\Drivers\\";
+            var path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
             //var path = "C:\\Users\\ciber\\Source\\Repos\\Ahorcado\\Ahorcado.SpecFlowATDD\\Drivers\\";
             driver = new ChromeDriver(path);
+            baseURL = "https://localhost:44348/";
         }
         //public AhorcadoStepDefinition(ScenarioContext scenarioContext)
         //{
         //    _scenarioContext = scenarioContext;
         //}
-
-
 
         [Given(@"la palabra en juego esta definida")]
         public void GivenLaPalabraEnJuegoEstaDefinida()
