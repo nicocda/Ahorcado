@@ -109,9 +109,7 @@ namespace Ahorcado.UnitTest
             var letras = logica.Juego.LetrasIngresadas;
             //Hacerlo en dos test
             //Hacer test muy simples y muchos
-            Assert.IsTrue(letras.Contains("p"));
-            //Assert.IsFalse(logica.PertenecePalabra("p"));
-               
+            Assert.IsTrue(letras.Contains("p"));       
         }
 
         [TestMethod]
@@ -126,7 +124,6 @@ namespace Ahorcado.UnitTest
 
             //Assert
             Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("_"));
-            //Assert.IsFalse(logica.PertenecePalabra("_"));
         }
 
         [TestMethod]
@@ -136,7 +133,6 @@ namespace Ahorcado.UnitTest
             logica.PalabraAAdivinar("asadwerá");
             logica.IngresarPalbraEnJuego("asawedá");
             logica.IngresarLetra("a");
-            //Assert.IsTrue(logica.Juego.LetrasIngresadas.Contains("a"));
             Assert.IsTrue(logica.GetCantidadAparicionesEnPalabra('a') > 0);
         }
 
@@ -174,6 +170,7 @@ namespace Ahorcado.UnitTest
             logica.IngresarPalbraEnJuego("palabraEjemplo");
             Assert.AreEqual(logica.Juego.PalabraAAdivinar.Length, logica.GetTamañoPalabra());
         }
+        
 
         [TestMethod,Ignore]
         public void retornar_tamaño_palabra_es_Numero()
@@ -183,7 +180,7 @@ namespace Ahorcado.UnitTest
             var tipo = num.GetType();
             Assert.IsTrue(tipo.Equals(typeof(int)));
         }
-
+        
         [TestMethod]
         public void VictoriaNotificada()
         {
@@ -220,6 +217,7 @@ namespace Ahorcado.UnitTest
             var pal = logica.ComunicarEstadoPalabra();
             Assert.AreEqual(esperado, pal);
         }
+        
         [TestMethod,Ignore]
         public void ComunicarLetrasErroneas()
         {
@@ -229,16 +227,7 @@ namespace Ahorcado.UnitTest
             var pal = logica.LetrasQueNoEstan();
             Assert.AreEqual(esperado, pal);
         }
-        //[TestMethod]
-        //public void MostrarConsolaPorPalabra()
-        //{
-        //    var logica = new LogicaJuego();
-        //    logica.IngresarPalbraEnJuego("12345678");
-        //    var esperado = "El tamaño de la palabra es 8";
-        //    var pal = logica.ComunicarTamPal();
-        //    Assert.AreEqual(esperado, pal);
-        //}
-
+        
         [TestMethod]
         public void IngresarPalabra()
         {
@@ -370,8 +359,6 @@ namespace Ahorcado.UnitTest
             Assert.AreEqual(4500, logica.Juego.Score);
         }
 
-
-
         //--------------------------Seccion de vidas----------------------//
 
         [TestMethod]
@@ -395,7 +382,6 @@ namespace Ahorcado.UnitTest
             var logica = new LogicaJuego();
             //Act
             logica.parametrizarVidas(5);
-
             //Assert
             Assert.AreEqual(logica.Juego.Vidas, 5);
         }
