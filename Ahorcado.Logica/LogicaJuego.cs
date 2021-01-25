@@ -252,7 +252,6 @@ namespace Ahorcado.Logica
             
         }*/
 
-        
 
         public void iniciarJuego()
         {

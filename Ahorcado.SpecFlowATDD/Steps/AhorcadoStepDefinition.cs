@@ -60,7 +60,8 @@ namespace Ahorcado.SpecFlowATDD.Steps
         public void TestInitialize()
         {
             //StartIIS();
-            var path = "C:\\Users\\ciber\\Source\\Repos\\Ahorcado\\Ahorcado.SpecFlowATDD\\Drivers\\";
+            var path = "D:\\Agiles\\Ahorcado.SpecFlowATDD\\Drivers\\";
+            //var path = "C:\\Users\\ciber\\Source\\Repos\\Ahorcado\\Ahorcado.SpecFlowATDD\\Drivers\\";
             driver = new ChromeDriver(path);
         }
         //public AhorcadoStepDefinition(ScenarioContext scenarioContext)

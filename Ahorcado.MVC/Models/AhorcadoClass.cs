@@ -263,25 +263,6 @@ namespace Ahorcado.MVC.Models
             this.Juego.Vidas = this.Juego.Vidas - 1;
         }
 
-        //public void Situacion()
-        //{
-        //    string usuario = juego.Usuario;
-        //    int score = GetScore();
-        //}
-
-        /*public string getPalabraRandom()
-        {
-            var random = new Random();
-            string filename = "animales.txt";
-            string path = Path.Combine(Environment.CurrentDirectory, @"Palabras\", filename);
-            var logFile = File.ReadAllLines("C:\\Users\\ciber\\source\\repos\\Ahorcado\\Ahorcado.MVC\\Palabras\\animales.txt");
-            var logList = new List<string>(logFile);
-            int index = random.Next(logList.Count);
-            return logList[index];
-
-        }*/
-
-
 
         public void iniciarJuego()
         {
