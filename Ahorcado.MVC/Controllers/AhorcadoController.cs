@@ -100,7 +100,6 @@ namespace Ahorcado.MVC.Controllers
             }
         }
 
-
         //[HttpGet]
         //public ActionResult _Derrota()
         //{
