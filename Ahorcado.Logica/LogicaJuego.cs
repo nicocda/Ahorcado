@@ -267,7 +267,7 @@ namespace Ahorcado.Logica
             {
                 "oso","gato","hormiga","mono","zorro","leopardo","cangrejo","aguila","ballena","castor",
                 "perro","murcielago","abeja","castor","vaca","leon","tigre","lagarto","oveja","cerdo",
-                "conejo"
+                "conejo","pato","paloma","elefante","jirafa","avestruz","gallina","hipopotamo","caiman","rana"
             };
             int index = random.Next(listOfAnimals.Count);
             return listOfAnimals[index];
