@@ -55,12 +55,13 @@ namespace Ahorcado.SpecFlowATDD.Steps
         [BeforeScenario]
         public void TestInitialize()
         {
-            //StartIIS();
-            var path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
-            //var path = "C:\\Users\\ciber\\Source\\Repos\\Ahorcado\\Ahorcado.SpecFlowATDD\\Drivers\\";
+        //StartIIS();
+        //var path = "C:\\Users\\ciber\\Source\\Repos\\Ahorcado\\Ahorcado.SpecFlowATDD\\Drivers\\";
+            var path = Path.GetFullPath("..\\Ahorcado.SpecFlowATDD\\Drivers\\");
             driver = new ChromeDriver(path);
             baseURL = "https://localhost:44348/";
         }
+
         //public AhorcadoStepDefinition(ScenarioContext scenarioContext)
         //{
         //    _scenarioContext = scenarioContext;
