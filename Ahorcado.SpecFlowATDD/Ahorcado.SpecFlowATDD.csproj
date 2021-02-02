@@ -34,4 +34,10 @@
     <ProjectReference Include="..\Ahorcado.MVC\Ahorcado.MVC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Drivers\chromedriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
