@@ -25,7 +25,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         //const int _iisPort = 9515;
 
         IWebDriver driver;
-        String baseURL= "https://localhost:44348/";
+        String baseURL= "http://ahorcadoagil.azurewebsites.net/";
         public AhorcadoClass _Ahorcado;
         public static int scorePrin = 0;
         public static int vidas = 0;
