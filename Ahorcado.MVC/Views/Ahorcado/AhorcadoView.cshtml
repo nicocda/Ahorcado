@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <script src="~/Scripts/Ahorcado/RecursosAhorcado.js"></script>
 
-<html>
+<html lang="es-ar">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Ahorcado</title>
@@ -55,11 +55,11 @@
     <input type="hidden" id="vidas" value="@Model.Juego.Vidas" />
     <input type="hidden" id="scoreTot" value="@Model.Juego.Score" />
     <div class="container center">
-        <table class="table-responsive table-bordered" style="background-color:lightgray" width="600" height="200">
+        <table aria-label="Cuadro de ordenamiento" class="table-responsive table-bordered" style="background-color:lightgray" width="600" height="200">
             <thead>
                 <tr>
                     <td>
-                        <h2> <label class="textAhorcado">&nbsp;&nbsp; Ahorcado @Model.Juego.PalabraAAdivinar </label></h2>
+                        <h2> <label class="textAhorcado">&nbsp;&nbsp; Ahorcado</label></h2>
                     </td>
                     <td style="width: 300px; text-align:center;">
                         <div>
