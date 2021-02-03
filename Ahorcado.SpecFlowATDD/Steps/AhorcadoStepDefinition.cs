@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using Ahorcado.MVC.Models;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace Ahorcado.SpecFlowATDD.Steps
 {
@@ -24,7 +25,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         //const int _iisPort = 9515;
 
         IWebDriver driver;
-        String baseURL;
+        String baseURL= "https://localhost:44348/";
         public AhorcadoClass _Ahorcado;
         public static int scorePrin = 0;
         public static int vidas = 0;
@@ -51,7 +52,7 @@ namespace Ahorcado.SpecFlowATDD.Steps
         //    // Start the IIS
         //    _iisProcess.Start();
         //}
-
+        /*
         [BeforeScenario]
         public void TestInitialize()
         {
@@ -61,7 +62,20 @@ namespace Ahorcado.SpecFlowATDD.Steps
             driver = new ChromeDriver(path);
             baseURL = "https://localhost:44348/";
         }
-
+        */
+        [BeforeScenario]
+        public void TestInitialize()
+        {
+            string browser = Environment.GetEnvironmentVariable("browser", EnvironmentVariableTarget.Process);
+            switch (browser)
+            {
+                default:
+                    driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+            }
+            driver.Url = "https://localhost:44348/";
+        }
+        
         //public AhorcadoStepDefinition(ScenarioContext scenarioContext)
         //{
         //    _scenarioContext = scenarioContext;
