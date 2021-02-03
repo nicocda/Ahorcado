@@ -66,14 +66,14 @@ namespace Ahorcado.SpecFlowATDD.Steps
         [BeforeScenario]
         public void TestInitialize()
         {
-            string browser = Environment.GetEnvironmentVariable("browser", EnvironmentVariableTarget.Process);
-            switch (browser)
-            {
-                default:
+            //string browser = Environment.GetEnvironmentVariable("browser", EnvironmentVariableTarget.Process);
+            //switch (browser)
+            //{
+            //    default:
                     driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                    break;
-            }
-            driver.Url = "https://localhost:44348/";
+            //        break;
+            //}
+            driver.Url = baseURL;
         }
         
         //public AhorcadoStepDefinition(ScenarioContext scenarioContext)
