@@ -145,8 +145,14 @@ namespace Ahorcado.MVC.Models
 
         public int GetCantidadAparicionesEnPalabra(char letra)
         {
-
-            return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString().ToLower()).Count;
+            try
+            {
+               return Regex.Matches(this.Juego.PalabraAAdivinar.ToLower(), letra.ToString().ToLower()).Count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public String ComunicarTamPal()
