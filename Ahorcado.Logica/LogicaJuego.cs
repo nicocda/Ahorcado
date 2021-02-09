@@ -69,8 +69,8 @@ namespace Ahorcado.Logica
 
         public void IngresarLetra(string letra)
         {
-            //if (string.IsNullOrEmpty(letra))
-                //throw new ArgumentNullException("Ingrese una letra");
+            if (string.IsNullOrEmpty(letra))
+                throw new ArgumentNullException("Ingrese una letra");
             if (letra.Length != 1)
                 throw new ArgumentOutOfRangeException("La letra debe contener solo un caracter");
             var letrasIngresadas = this.LetrasIngresadas();
